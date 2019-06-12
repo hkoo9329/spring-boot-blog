@@ -1,2 +1,27 @@
+
 server:
   port: 8959
+spring:
+  h2:
+    console:
+      path: /console
+      enabled: true
+
+
+  thymeleaf:
+    cache: false
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 494197804420-1ke3o3d15mt52k0n5k54ip8920ciujjp.apps.googleusercontent.com
+            client-secret: sdZkIXaOdfTnBiIsP8VUdok8
+
+custom:
+  oauth2:
+    kakao:
+      client-id: 18b1b2deaa6aec3e53d07899549f8587
+    naver:
+      client-id: HylBNrnld2nVNQPLdZ6V
+      client-secret: GgJ8FmAMz5
