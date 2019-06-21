@@ -27,16 +27,13 @@ import static com.hkoo.toy.blog.domain.enums.SocialType.*;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         CharacterEncodingFilter filter = new CharacterEncodingFilter();
-
         http
                 .authorizeRequests()
-                .antMatchers("/", "/oauth2/**", "/login/**", "/css/**", "/image/**", "/js/**", "/console/**")
-                .permitAll()
-                .antMatchers("/naver").hasAuthority(NAVER.getRoleType())
+                .antMatchers("/", "/oauth2/**", "/login/**",  "/css/**", "/images/**", "/js/**", "/console/**").permitAll()
+                .antMatchers("/facebook").hasAuthority(NAVER.getRoleType())
                 .antMatchers("/google").hasAuthority(GOOGLE.getRoleType())
                 .antMatchers("/kakao").hasAuthority(KAKAO.getRoleType())
                 .anyRequest().authenticated()
@@ -62,11 +59,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .addFilterBefore(filter, CsrfFilter.class)
                 .csrf().disable();
     }
+
     @Bean
-    public ClientRegistrationRepository clientRegistrationRepository(OAuth2ClientProperties oAuth2ClientProperties,
-                                                                     @Value("${custom.oauth2.kakao.client-id}") String kakaoClientId) {
-        List<ClientRegistration> registrations = oAuth2ClientProperties
-                .getRegistration().keySet().stream()
+    public ClientRegistrationRepository clientRegistrationRepository(OAuth2ClientProperties oAuth2ClientProperties, @Value("${custom.oauth2.kakao.client-id}") String kakaoClientId) {
+        List<ClientRegistration> registrations = oAuth2ClientProperties.getRegistration().keySet().stream()
                 .map(client -> getRegistration(oAuth2ClientProperties, client))
                 .filter(Objects::nonNull)
                 .collect(Collectors.toList());
