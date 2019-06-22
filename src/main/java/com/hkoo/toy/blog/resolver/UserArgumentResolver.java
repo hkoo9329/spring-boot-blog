@@ -22,9 +22,7 @@ import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.hkoo.toy.blog.domain.enums.SocialType.NAVER;
-import static com.hkoo.toy.blog.domain.enums.SocialType.GOOGLE;
-import static com.hkoo.toy.blog.domain.enums.SocialType.KAKAO;
+import static com.hkoo.toy.blog.domain.enums.SocialType.*;
 
 public class UserArgumentResolver implements HandlerMethodArgumentResolver {
 
@@ -68,9 +66,10 @@ public class UserArgumentResolver implements HandlerMethodArgumentResolver {
     }
 
     private User convertUser(String authority, Map<String, Object> map) {
-        //if(NAVER.isEquals(authority)) return getNaverUser(map);
-        if(GOOGLE.isEquals(authority)) return getModernUser(GOOGLE, map);
+        if(NAVER.isEquals(authority)) return getNaverUser(map);
+        else if(GOOGLE.isEquals(authority)) return getModernUser(GOOGLE, map);
         else if(KAKAO.isEquals(authority)) return getKaKaoUser(map);
+        else if(GITHUB.isEquals(authority)) return getModernUser(GITHUB, map);
         return null;
     }
 
@@ -94,16 +93,16 @@ public class UserArgumentResolver implements HandlerMethodArgumentResolver {
                 .createdDate(LocalDateTime.now())
                 .build();
     }
-//    private User getNaverUser(Map<String, Object> map) {
-//        Map<String, String> propertyMap = (HashMap<String, String>) map.get("properties");
-//        return User.builder()
-//                .name(propertyMap.get("name"))
-//                .email(String.valueOf(map.get("email")))
-//                .pincipal(String.valueOf(map.get("id")))
-//                .socialType(NAVER)
-//                .createdDate(LocalDateTime.now())
-//                .build();
-//    }
+    private User getNaverUser(Map<String, Object> map) {
+        Map<String, String> propertyMap = (HashMap<String, String>) map.get("properties");
+        return User.builder()
+                .name(propertyMap.get("name"))
+                .email(String.valueOf(map.get("email")))
+                .pincipal(String.valueOf(map.get("id")))
+                .socialType(NAVER)
+                .createdDate(LocalDateTime.now())
+                .build();
+    }
 
     private void setRoleIfNotSame(User user, OAuth2AuthenticationToken authentication, Map<String, Object> map) {
         if(!authentication.getAuthorities().contains(new SimpleGrantedAuthority(user.getSocialType().getRoleType()))) {

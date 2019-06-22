@@ -22,6 +22,7 @@
 ### 진행상황
 
 ##### 2019.06.12 : OAuth2 Google, kakko 추가 api에서 redirect 변경 해야함 NAVER는 트러블 개선 필요
+##### 2019.06.22 : 구글, 카카오 OAuth2 구현 but naver와 github가 로그인 되지 않는 버그 수정 중
  
 
 
