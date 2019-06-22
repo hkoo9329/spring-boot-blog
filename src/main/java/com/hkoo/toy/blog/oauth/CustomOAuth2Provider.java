@@ -13,7 +13,6 @@ public enum  CustomOAuth2Provider {
             builder.authorizationUri("https://nid.naver.com/oauth2.0/authorize");
             builder.tokenUri("https://nid.naver.com/oauth2.0/token");
             builder.userInfoUri("https://openapi.naver.com/v1/nid/me");
-            builder.userNameAttributeName("id");
             builder.clientName("naver");
             return builder;
         }

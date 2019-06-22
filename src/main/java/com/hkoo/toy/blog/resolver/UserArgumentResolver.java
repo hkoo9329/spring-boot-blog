@@ -98,7 +98,6 @@ public class UserArgumentResolver implements HandlerMethodArgumentResolver {
         return User.builder()
                 .name(propertyMap.get("name"))
                 .email(String.valueOf(map.get("email")))
-                .pincipal(String.valueOf(map.get("id")))
                 .socialType(NAVER)
                 .createdDate(LocalDateTime.now())
                 .build();

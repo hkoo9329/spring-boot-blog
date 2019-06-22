@@ -91,8 +91,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //
 //        registrations.add(CustomOAuth2Provider.NAVER.getBuilder("naver")
 //                .clientId(naverClientId)
-//                .clientSecret(naverClientPaw) //필요없는 값인데 null이면 실행이 안되도록 설정되어 있음
-//                .jwkSetUri("test") //필요없는 값인데 null이면 실행이 안되도록 설정되어 있음
+//                .clientSecret(naverClientPaw)
 //                .build());
 //
 //        return new InMemoryClientRegistrationRepository(registrations);

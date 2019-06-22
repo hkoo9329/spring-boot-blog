@@ -22,7 +22,7 @@
 ### 진행상황
 
 ##### 2019.06.12 : OAuth2 Google, kakko 추가 api에서 redirect 변경 해야함 NAVER는 트러블 개선 필요
-##### 2019.06.22 : 구글, 카카오 OAuth2 구현 but naver와 github가 로그인 되지 않는 버그 수정 중
+##### 2019.06.22 : google, kakao, github OAuth2, 구현 but naver OAuth2는 추후에 추가 예정
  
 
 
@@ -33,3 +33,9 @@
 - kakao api 사이트 : https://developers.kakao.com/
 - naver api 사이트 : https://developers.naver.com/main/
 - google api 사이트 : https://console.developers.google.com/apis
+- 무료 이미지 사이트 : https://pixabay.com/ko/
+
+
+
+### 정리
+ - [필요 코드들](./study/Codes.md)
