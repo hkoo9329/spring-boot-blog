@@ -16,4 +16,8 @@ public class HomeController {
         model.addAttribute("name","lee");
         return "home";
     }
+    @GetMapping("/error")
+    public String errorPage(){
+        return "error";
+    }
 }
