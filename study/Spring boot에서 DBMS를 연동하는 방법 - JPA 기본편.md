@@ -2,7 +2,7 @@
 
 ## 목차 
 
-- [DBMS <--> Spring boot](#DBMS <--> Spring boot)
+- [DBMS <--> Spring boot](DBMS <--> Spring boot)
 - [What is JPA ?](#What is JPA ?)
 - [How to use](#How to use)
 - [Example](#Example)
