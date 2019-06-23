@@ -2,8 +2,13 @@
 
 ## 목차 
 
+<<<<<<< HEAD
 - [DBMS <--> Spring boot](DBMS <--> Spring boot)
 - [What is JPA ?](#What is JPA ?)
+=======
+- [DBMS <--> Spring boot](#DBMS <--> Spring boot)
+- [What is JPA ?](# What is JPA ?)
+>>>>>>> 3d70b48bd61af9745f9a2c2848de3c13825de0f3
 - [How to use](#How to use)
 - [Example](#Example)
 - [Test](#Test)
