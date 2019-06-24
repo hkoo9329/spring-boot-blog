@@ -10,6 +10,7 @@ import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.support.WebDataBinderFactory;
 import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -24,6 +25,7 @@ import java.util.Map;
 
 import static com.hkoo.toy.blog.domain.enums.SocialType.*;
 
+@Component
 public class UserArgumentResolver implements HandlerMethodArgumentResolver {
 
     private UserRepository userRepository;
@@ -77,7 +79,7 @@ public class UserArgumentResolver implements HandlerMethodArgumentResolver {
         return User.builder()
                 .name(String.valueOf(map.get("name")))
                 .email(String.valueOf(map.get("email")))
-                .pincipal(String.valueOf(map.get("id")))
+                .principal(String.valueOf(map.get("id")))
                 .socialType(socialType)
                 .createdDate(LocalDateTime.now())
                 .build();
@@ -88,7 +90,7 @@ public class UserArgumentResolver implements HandlerMethodArgumentResolver {
         return User.builder()
                 .name(propertyMap.get("nickname"))
                 .email(String.valueOf(map.get("kaccount_email")))
-                .pincipal(String.valueOf(map.get("id")))
+                .principal(String.valueOf(map.get("id")))
                 .socialType(KAKAO)
                 .createdDate(LocalDateTime.now())
                 .build();

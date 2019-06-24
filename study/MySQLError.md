@@ -45,3 +45,7 @@
 
 > 출처 : [https://yenaworldblog.wordpress.com/2018/01/24/java-mysql-%EC%97%B0%EB%8F%99%EC%8B%9C-%EB%B0%9C%EC%83%9D%ED%95%98%EB%8A%94-%EC%97%90%EB%9F%AC-%EB%AA%A8%EC%9D%8C/](https://yenaworldblog.wordpress.com/2018/01/24/java-mysql-연동시-발생하는-에러-모음/)
 
+
+## 추후 정리
+> 출처 : https://okky.kr/article/333904?note=1082194
+> 출처 : https://okky.kr/article/441805
