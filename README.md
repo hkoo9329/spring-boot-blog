@@ -23,7 +23,7 @@
 
 ##### 2019.06.12 : OAuth2 Google, kakko 추가 api에서 redirect 변경 해야함 NAVER는 트러블 개선 필요
 ##### 2019.06.22 : google, kakao, github OAuth2, 구현 but naver OAuth2는 추후에 추가 예정
-##### 2019.06.24 : CRUD를 위한 api 서버 만듬 -> [https://github.com/leejuhyeok/spring-boot-blog-api]
+##### 2019.06.24 : CRUD를 위한 api 서버 생성 -> [https://github.com/leejuhyeok/spring-boot-blog-api]
 
 
 
