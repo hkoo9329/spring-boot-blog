@@ -33,26 +33,26 @@ public class BlogApplication implements WebMvcConfigurer {
         argumentResolvers.add(userArgumentResolver);
     }
 
-    @Bean
-    public CommandLineRunner runner(UserRepository userRepository, BoardRepository boardRepository) {
-        return (args) -> {
-            User user = userRepository.save(User.builder()
-                    .name("havi")
-                    .password("test")
-                    .email("havi@gmail.com")
-                    .createdDate(LocalDateTime.now())
-                    .build());
-
-            IntStream.rangeClosed(1, 200).forEach(index ->
-                    boardRepository.save(Board.builder()
-                            .title("test"+index)
-                            .subTitle("test"+index)
-                            .content("contents")
-                            .boardType(BoardType.free)
-                            .createdDate(LocalDateTime.now())
-                            .updatedDate(LocalDateTime.now())
-                            .user(user).build())
-            );
-        };
-    }
+//    @Bean
+//    public CommandLineRunner runner(UserRepository userRepository, BoardRepository boardRepository) {
+//        return (args) -> {
+//            User user = userRepository.save(User.builder()
+//                    .name("havi")
+//                    .password("test")
+//                    .email("havi@gmail.com")
+//                    .createdDate(LocalDateTime.now())
+//                    .build());
+//
+//            IntStream.rangeClosed(1, 200).forEach(index ->
+//                    boardRepository.save(Board.builder()
+//                            .title("test"+index)
+//                            .subTitle("test"+index)
+//                            .content("contents")
+//                            .boardType(BoardType.free)
+//                            .createdDate(LocalDateTime.now())
+//                            .updatedDate(LocalDateTime.now())
+//                            .user(user).build())
+//            );
+//        };
+//    }
 }
