@@ -19,4 +19,30 @@
 가 되지 않도록.....
 
 
+### 진행상황
 
+##### 2019.06.12 : OAuth2 Google, kakko 추가 api에서 redirect 변경 해야함 NAVER는 트러블 개선 필요
+##### 2019.06.22 : google, kakao, github OAuth2, 구현 but naver OAuth2는 추후에 추가 예정
+##### 2019.06.24 : CRUD를 위한 api 서버 생성 -> [https://github.com/leejuhyeok/spring-boot-blog-api]
+
+
+
+
+
+### 참고 사이트
+- kakao api 사이트 : https://developers.kakao.com/
+- naver api 사이트 : https://developers.naver.com/main/
+- google api 사이트 : https://console.developers.google.com/apis
+- 무료 이미지 사이트 : https://pixabay.com/ko/
+
+
+
+### 해야할 일
+
+- [ ] MySQL DB에 insert 구성하기
+- [ ] Pageable 기능에 대해 변경
+- [ ] mysql utf-8 설정을 안해서 고생한 내용 추가
+
+### 정리
+ - [필요 코드들](./study/Codes.md)
+ - [mysql 연동시 오류 해결 방법](./study/MySQLError.md)

@@ -8,12 +8,14 @@
 
     <title>Title</title>
 </head>
-<body>
+<body style="background: url(https://cdn.pixabay.com/photo/2015/12/24/02/14/music-1106439_1280.jpg);background-size: cover;">
+<div th:class="container" style="text-align: center">
     <h1>음 홈페이지야 아무것도 없지만..</h1>
     <h2 th:text="${name}"></h2>
 
-    <a class="btn btn-secondary btn-lg" href="/login">버튼</a>
-    <h2></h2>
+    <a class="btn btn-secondary btn-lg" href="/login">OAuth2 테스트 페이지</a>
+</div>
+
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script>

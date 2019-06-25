@@ -9,12 +9,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @Controller
-@RequestMapping("/")
 public class HomeController {
 
-    @GetMapping("/")
+    @GetMapping("")
     public String welcome(Model model){
         model.addAttribute("name","lee");
         return "home";
+    }
+    @GetMapping("/error")
+    public String errorPage(){
+        return "error";
     }
 }
