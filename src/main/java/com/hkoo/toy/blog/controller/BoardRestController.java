@@ -2,6 +2,7 @@ package com.hkoo.toy.blog.controller;
 
 import com.hkoo.toy.blog.domain.Board;
 import com.hkoo.toy.blog.repository.BoardRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.rest.webmvc.RepositoryRestController;
@@ -18,11 +19,8 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 @RepositoryRestController
 public class BoardRestController {
 
+    @Autowired
     private BoardRepository boardRepository;
-
-    public BoardRestController(BoardRepository boardRepository){
-        this.boardRepository = boardRepository;
-    }
 
     @GetMapping("/boards")
     public @ResponseBody
