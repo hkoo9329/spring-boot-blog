@@ -1,6 +1,7 @@
 package com.hkoo.toy.blog.config;
 
 
+import com.hkoo.toy.blog.event.BoardEventHandler;
 import com.hkoo.toy.blog.oauth.CustomOAuth2Provider;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -115,5 +116,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .build();
         }
         return null;
+    }
+
+
+    @Bean
+    BoardEventHandler boardEventHandler(){
+        return new BoardEventHandler();
     }
 }
