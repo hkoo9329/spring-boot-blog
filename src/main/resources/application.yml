@@ -11,17 +11,17 @@ spring:
     database: mysql
     generate-ddl: true
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
-
   datasource:
     username: hkoo
     password: hkoo
     url: jdbc:mysql://localhost:3306/user_db?createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=UTF-8&characterSetResults=UTF-8&serverTimezone=UTC&useLegacyDatetimeCode=false
     driver-class-name: com.mysql.cj.jdbc.Driver
-
   devtools:
     livereload:
       enabled: true
-
+  batch:
+    job:
+      enabled: false #어플리케이션 구동시 컨텍스트 내의 모든 스프링 배치 작업 자동 실행 여부(false로 해야 구동시 무조건 실행이 안됨)
 
   thymeleaf:
     cache: false
