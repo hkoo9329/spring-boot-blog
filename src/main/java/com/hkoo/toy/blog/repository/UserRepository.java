@@ -10,7 +10,10 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @RepositoryRestResource(excerptProjection = UserOnlyContainName.class)
-public interface UserRepository extends JpaRepository<User,Long> {
+public interface UserRepository extends JpaRepository<User, Long> {
     User findByEmail(String email);
+
+    User findByName(String name);
+
     List<User> findByUpdatedDateBeforeAndStatusEquals(LocalDateTime localDateTime, UserStatus status);
 }

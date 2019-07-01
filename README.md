@@ -39,10 +39,14 @@
 
 ### 해야할 일
 
-- [ ] MySQL DB에 insert 구성하기
-- [ ] Pageable 기능에 대해 변경
+- [x] MySQL DB에 insert 구성하기
+- [x] Pageable 기능에 대해 변경
 - [ ] mysql utf-8 설정을 안해서 고생한 내용 추가
+- [ ] 로그인 후 back button 누르면 다시 로그인 페이지로 가는 버그 수정
 
 ### 정리
  - [필요 코드들](./study/Codes.md)
  - [mysql 연동시 오류 해결 방법](./study/MySQLError.md)
+ - [새창띄우기_자바스크립트](https://m.blog.naver.com/PostView.nhn?blogId=racoon_z&logNo=220606460942&proxyReferer=https%3A%2F%2Fwww.google.com%2F)
+ - [뒤로가기 버튼 제어](https://stackoverflow.com/questions/18147302/how-to-handle-back-button-using-spring-security)
+ - [Spring Security OAuth2.0 파헤치기! -1](https://coding-start.tistory.com/158)

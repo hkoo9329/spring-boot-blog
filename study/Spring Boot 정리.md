@@ -136,6 +136,57 @@
 
 - Job 객체를 만드는 빌더는 여러 개가 존재, 여러 빌더를 통합 처리하는 공장인 JobBuilderFactory로 원하는 Job을 손쉽게 만들 수 있다.
 
-- JobBuilderFactory의 get() 메서드로 JobBuilder를 생성하고 이를 이용
 
-- Job
+
+
+```java
+// JobBuilderFactory.class
+
+public class JobBuilderFactory{
+    
+    private JobRepository jobRepository;
+    
+    public JobBuilderFactory(JobRepository jobRepository){
+        this.jobRepository = jobRepository;
+    }
+    
+    public JobBuilder get(String name){
+        JobBuilder builder = new JobBuilder(name).repository(jobRepository);
+        return builder;
+    }
+}
+
+```
+
+- JobBuilderFactory는 JobBuilder를 생성할 수 있는 get() 메서드를 포함하고 있다.
+- JobBuilderFactory에 get( ) 메서드를 호출할 때마다 ==새로운 빌더가 생성==
+- 새로운 JobBuilder를 생성할 때마다 당초 JobBuilderFactory가 생성될 때 주입받은 JobRepository를 JobBuilder에서 사용할 리포지토리로 설정
+
+```java
+//SimpleJobBuilder를 활용한 Job 생성 예제 코드
+@Autowired
+private JobBuilderFactory jobBuilderFactory;
+
+@Bean
+public Job simpleJob(){
+    return jobBuilderFactory.get("simpleJob")
+        .start(simpleStep())
+        .build();
+}
+```
+
+
+
+
+
+### JobInstance
+
+- JobInstance는 배치에서 Job이 실행될 때 하나의 Job 실행 단위
+- JobInstance는 여러개의 JobExecution을 가질 수 있다.
+
+
+
+### JobExecution
+
+- JobExecution은 JobInstance에 대한 한 번의 실행을 나타내는 객체
+
