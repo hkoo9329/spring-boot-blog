@@ -41,8 +41,9 @@
 
 - [x] MySQL DB에 insert 구성하기
 - [x] Pageable 기능에 대해 변경
-- [ ] mysql utf-8 설정을 안해서 고생한 내용 추가
-- [ ] 로그인 후 back button 누르면 다시 로그인 페이지로 가는 버그 수정
+- [x] mysql utf-8 설정을 안해서 고생한 내용 추가
+- [x] 로그인 후 back button 누르면 다시 로그인 페이지로 가는 버그 수정
+- [ ] 현재 사용자의 이름을 가져오는 로직 만들기
 
 ### 정리
  - [필요 코드들](./study/Codes.md)
