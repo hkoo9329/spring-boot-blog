@@ -26,6 +26,12 @@
 ##### ~~2019.06.24 : CRUD를 위한 api 서버 생성 -> [https://github.com/leejuhyeok/spring-boot-blog-api]~~
 ##### 2019.06.25 : data-rest으로 변경 (같은 포트를 사용함으로 CORS를 사용 X , 생성했던 api 서버 repo는 유지)
 
+##### 2019.07.01 :  batch 추가, 로그인 후 뒤로가기 버튼으로 다시 로그인 페이지로 가는 문제 수정
+
+
+
+
+
 
 
 
