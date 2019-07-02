@@ -2,11 +2,45 @@
 
 
 
+## 목차
+
+1. JQuery 공부
+2. JQuery 정리
+   - [JQuery를 이용해서 Input 값 변경 실시간 감지](#JQuery를-이용해서-Input-값-변경-실시간-감지)
+   - [JQuery를 이용한 ID, Class, Name 별로 Input Value 값 가져오기](#JQuery를-이용한-ID,-Class,-Name-별로-Input-Value-값-가져오기)
+   - [JavaScrip - 정규식을 이용한 ID / PW 검사](#JavaScrip-정규식을-이용한-ID-/-PW-검사)
+3. Ajax 공부
+   - 
+4. Ajax 정리
+   - [회원 가입 ajax로 id 중복 체크, 비밀번호 확인](#회원-가입-ajax로-id-중복-체크,-비밀번호-확인)
+   - [ajax 데이터 넘기기 간단 예제](#ajax-데이터-넘기기-간단-예제)
+
+
+
 # JQuery 공부
 
 
 
 # JQuery 정리
+
+## JQuery를 이용해서 Input 값 변경 실시간 감지
+
+Input 타입에는  select, checkbox, text, password 등 수 많은 타입을 내장하고 있는데, select나 checkbox 같은 경우에는 값의 변경을 단순히 onchange로도 확인할 수 있습니다. 다만, text나 textarea의 경우에는 값을 적고 있을 때에는 onchange로는 값의 변경을 감지할 수 없습니다. 왜냐하면 onchange 이벤트가 걸리는 시점이 blur(focus와 반대로 오브젝트를 떠나는 시점)이기 때문입니다. 따라서 onchange로는 text나 textarea의 실시간 값 변경을 감지할 수 없습니다. 업무를 하던 중에 실시간으로 값의 변경을 감지해서 앞의 10글자 정도는 고정으로 가져가도록 유지하게 해야하는 때가 있었는데 찾아보니 아래와 같은 방법이 있었습니다.
+
+```javascript
+//예전 jQuery라면 on이 아니라 bind나 live 
+$("#text").on("propertychange change keyup paste input", function() {
+    var currentVal = $(this).val();
+    if(currentVal == oldVal) {
+        return;
+    }
+ 
+    oldVal = currentVal;
+    alert("changed!");
+});
+```
+
+출처 : https://karismamun.tistory.com/66
 
 
 
@@ -327,7 +361,7 @@ $(function(){
 
 
 
-## [jQuery\] ajax 데이터 넘기기 간단 예제
+## ajax 데이터 넘기기 간단 예제
 
  간단하게 input 값들을 문자열, 배열로 한꺼번에 넘기는 예제다.
 
