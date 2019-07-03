@@ -4,10 +4,7 @@ package com.hkoo.toy.blog.domain;
 import com.hkoo.toy.blog.domain.enums.Grade;
 import com.hkoo.toy.blog.domain.enums.SocialType;
 import com.hkoo.toy.blog.domain.enums.UserStatus;
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -18,6 +15,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Entity
 @Table
+@Data
 public class User implements Serializable {
 
     @Id

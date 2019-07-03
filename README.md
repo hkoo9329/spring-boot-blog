@@ -57,3 +57,6 @@
  - [새창띄우기_자바스크립트](https://m.blog.naver.com/PostView.nhn?blogId=racoon_z&logNo=220606460942&proxyReferer=https%3A%2F%2Fwww.google.com%2F)
  - [뒤로가기 버튼 제어](https://stackoverflow.com/questions/18147302/how-to-handle-back-button-using-spring-security)
  - [Spring Security OAuth2.0 파헤치기! -1](https://coding-start.tistory.com/158)
+ - [스프링 Ajax 파라미터 받기](http://javakorean.com/%EC%8A%A4%ED%94%84%EB%A7%81-ajax-%ED%8C%8C%EB%9D%BC%EB%AF%B8%ED%84%B0-%EB%B0%9B%EA%B8%B0/)
+ 
+ 

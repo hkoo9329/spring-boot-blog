@@ -7,20 +7,32 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+@Slf4j
 @RestController
 @CrossOrigin
-@RequestMapping("/user")
-@Slf4j
-public class UserController {
+@RequestMapping("/api")
+public class TestApiController {
 
     @Autowired
     UserRepository userRepository;
 
+    @PostMapping("/users")
+    public boolean getusers(@RequestParam(value = "id") String id){
+        log.info(id);
+        return true;
+    }
+
     @PostMapping("/check/id")
     public boolean userIdExistsCheck(@RequestParam(value = "id") String id){
-        User user = userRepository.findByEmail(id);
-        log.info("id : "+id);
+        try {
+            User user = userRepository.findByEmail(id);
+            if (user.equals(null)){
 
-        return (user.equals(null));
+            }
+            log.info("id : "+id);
+        }catch (NullPointerException e){
+            return true;
+        }
+        return false;
     }
 }

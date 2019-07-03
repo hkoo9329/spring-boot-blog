@@ -1,4 +1,16 @@
+
+
 # JQuery 와 Ajax 공부
+
+> >내용 확인 후 추가: 
+> >
+> >-  [ [SpringSecurity] 스프링 시큐리티 jquery ajax사용시 로그인 하게 하기](https://nkcnow.tistory.com/224)
+> >- [Ajax로 Spring Controller와 통신할때 객체구성방법 두가지](http://blog.naver.com/PostView.nhn?blogId=admass&logNo=220885561838&from=search&redirect=Log&widgetTypeCall=true&directAccess=false)
+> >- [  SPRING에서 JSON 객체를 파라메터로 넘겼을 경우 처리](https://babolsk.tistory.com/1067)
+> >- [Spring-ajax-demo(GItHub)](https://github.com/kdevkr/spring-demo-ajax)
+> >- [[[Spring\] Ajax - JSON 응답하기 ( MessageConverter )](https://victorydntmd.tistory.com/172)]
+
+
 
 
 
@@ -8,7 +20,7 @@
 2. JQuery 정리
    - [JQuery를 이용해서 Input 값 변경 실시간 감지](#JQuery를-이용해서-Input-값-변경-실시간-감지)
    - [JQuery를 이용한 ID, Class, Name 별로 Input Value 값 가져오기](#JQuery를-이용한-ID,-Class,-Name-별로-Input-Value-값-가져오기)
-   - [JavaScrip - 정규식을 이용한 ID / PW 검사](#JavaScrip-정규식을-이용한-ID-/-PW-검사)
+   - [JavaScrip - 정규식을 이용한 ID / PW 검사](#JavaScrip---정규식을-이용한-ID-/-PW-검사)
 3. Ajax 공부
    - 
 4. Ajax 정리
@@ -242,6 +254,71 @@ var idReg = /^[A-za-z0-9]{5,15}/g;
 
 
 
+### 자바스크립트 이메일 유효성 체크
+
+```html
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Insert title here</title>
+
+<script type="text/javascript">
+
+	function check() {		
+
+		alert(document.getElementById("email").value);
+
+		var email = document.getElementById("email").value;
+
+		var exptext = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
+
+				if(exptext.test(email)==false){
+
+			//이메일 형식이 알파벳+숫자@알파벳+숫자.알파벳+숫자 형식이 아닐경우			
+
+			alert("이 메일형식이 올바르지 않습니다.");
+
+			document.addjoin.email.focus();
+
+			return false;
+
+		}
+
+	}
+
+	
+
+</script>
+
+</head>
+
+<body>
+
+<form onsubmit="check();">
+
+	<input type="text" name="email" id="email"/><br>
+
+	<input type="submit" value="submit">	
+
+</html>
+
+```
+
+
+
+출처 : [자바스크립트 이메일 유효성 체크](https://carami.tistory.com/40)
+
+
+
+
+
+
+
 
 
 
@@ -250,11 +327,161 @@ var idReg = /^[A-za-z0-9]{5,15}/g;
 
 # Ajax 공부
 
+## Ajax 개요
+
+### Ajax
+
+- Ajax는 그 자체가 별도의 새로운 언어는 아니다.
+- HTML, CSS, 자바스크립트, DOM, XML 등 기존에 사용되던 여러 기술을 함께 사용하는 새로운 개발 기법이다.
+
+- Ajax는 웹 페이지 전체를 다시 로딩하지 않고도, 웹 페이지의 일부분만을 갱신할 수 있게 해준다.
+- 즉, 백그라운드 영역에서 서버와 통신하여 그 결과를 웹 페이지의 일부분에만 표시할 수 있다.
+
+### Ajax란?
+
+- Ajax란 Asynchronous JavaScript and XML의 약자이다.
+
+- Ajax는 빠르게 동작하는 동적인 웹 페이지를 만들기 위한 개발 기법의 하나이다.
+
+- Ajax는 웹 페이지 전체를 다시 로딩하지 않고도, 웹 페이지의 일부분만을 갱신할 수 있다.
+- 즉 Ajax를 이용하면 백그라운드 영역에서 서버와 통신하여, 그 결과를 웹 페이지의 일부분에만 표시할 수 있다.
+- 이때 서버와는 다음과 같은 다양한 형태의 데이터를 주고 받을 수 있다.
+  - JSON
+  - XML
+  - HTML
+  - 텍스트 파일 등
+
+## Ajax의 장점
+
+1. 웹 페이지 전체를 다시 로딩하지 않고도, 웹 페이지의 일부분만을 갱신할 수 있다.
+2. 웹 페이지가 로드된 후에 서버로 데이터 요청을 보낼 수 있다.
+3. 웹 페이지가 로드된 후에 서버로부터 데이터를 받을 수 있다.
+4. 백그라운드 영역에서 서버로 데이터를 보낼 수 있다.
+
+## Ajax의 한계
+
+Ajax를 이용하면 여러 장점이 있지만, 다음과 같은 일들은 처리할 수 없다.
+
+1. Ajax는 클라이언트가 서버에 데이터를 요청하는 클라이언트 폴링 방식을 사용하므로, 서버 푸시 방식의 실시간 서비스는 만들 수 없다.
+
+2. Ajax로는 binary 데이터를 보내거나 받을 수 없다.
+
+3. Ajax 스크립트가 포함된 서버가 아닌 다른 서버로 Ajax 요청을 보내 수 없다.
+
+4. 클라이언트의 PC로 Ajax 요청을 보낼 수 없다.
+
+   >클라이언트 풀링(client pooling) 방식이란 사용자가 직접 원하는 정보를 서버에게 요청하여 얻는 방식을 의미합니다.
+   >이에 반해 서버 푸시(server push) 방식이란 사용자가 요청하지 않아도 서버가 알아서 자동으로 특정 정보를 제공하는 것을 의미합니다.
+   >요즘 많이들 사용하는 스마트 폰에서 각종 앱이 보내는 푸시 알림이 서버 푸시 방식의 대표적인 예입니다.
+
+### Ajax 프레임워크
+
+- Prototype
+
+- Script.aculo.us
+
+- dojo
+
+- jQuery
+
+
+
+
+## Ajax 동작 원리
+
+### Ajax 구성 요소
+
+Ajax는 기존에 사용되던 여러 기술을 함께 사용하여, 웹 페이지의 일부분만을 갱신할 수 있도록 해주는 개발 기법이다.
+
+Ajax에서 사용하는 기존 기술은 다음과 같다.
+
+- 웹 페이지의 표현을 위한 HTML과 CSS
+- 데이터에 접근하거나 화면 구성을 동적으로 조작하기 위해 사용되는 DOM 모델
+- 데이터의 교화을 위한 JSON이나 XML
+- 웹 서버와의 비동기식 통신을 위한 XMLHttpRequest 객체
+- 위에서 언급한 모든 기술을 결합하여 사용자의 작업 흐름을 제어하는데 사용되는 자바스크립트
+
+### Ajax 동작 원리
+
+Ajax의 동작은 위에서 언급한 Ajax 구성 요소들을 사용하여 이루어진다.
+
+Ajax를 이용한 웹 응용 프로그램은 자바스크립트 코드를 통해 웹 서버와 통신을 하게 된다.
+
+따라서 사용자의 동작에는 영향을 주지 않으면서도 백그라운드에서 지속해서 서버와 통신할 수 있다.
+
+
+
+![](http://tcpschool.com/lectures/img_ajax_ajax_application.png)
+
+1.  사용자에 의한 요청 이벤트가 발생한다.
+
+2.  요청 이벤트가 발생하면 이벤트 핸들러에 의해 자바스크립트가 호출된다.
+
+3.  자바스크립트는 XMLHttpRequest 객체를 사용하여 서버로 요청을 보낸다.
+
+    이때  웹 브라우저는 요청을 보내고 나서, 서버의 응답을 기다릴 필요 없이 다른 작업을 처리할 수 있다.
+
+4. 서버는 전달 받은 XMLHttpRequest 객체를 가지고 Ajax 요청을 처리한다.
+
+5. &(5와6은 같이 설명)
+
+6. 서버는 처리한 결과를 HTML, XML 또는 JSON 형태의 데이터로 웹 브라우저에 전달한다.
+
+   이때 전달되는 응답은 새로운 페이지를 전부 보내는 것이 아니라 필요한 데이터만을 전달한다.
+
+7. 서버로부터 전달받은 데이터를 가지고 웹 페이지의 일부분만을 갱신하는 자바스크립트를 호출한다.
+
+8. 결과적으로 웹 페이지의 일부분만이 다시 로딩되어 표시된다.
+
+
+
+## DOM
+
+### 문서 객체 모델(DOM)이란?
+
+- 문서 객체 모델 (DOM, Document Object Model)은 HTML 문서나 XML 문서에 접근하기 위한 일종의 인터페이스이다.
+
+- 이 모델은 문서 내의 모든 요소의 목적과 특징을 정의하고, 각각의 요소에 접근하는 방법을 제공한다.
+
+  ![](http://tcpschool.com/lectures/img_js_htmldom.png)
+
+  
+
+- Ajax에서는 이러한 DOM을 이용하여 웹 페이지의 일부 요소만을 변경할 수 있다.
+
+- 따라서 Ajax를 배우기 전에 DOM에 대한 기본저깅ㄴ 사항을 알아야한다.
+
+### DOM 요소의 선택
+
+자바스크립트로 DOM 요소를 다루기 위해서는 우선 해당 요소를 선택해야만 한다.
+
+DOM 요소를 선택하는 방법은 다음과 같다.
+
+1. 태그 이름(tag name)을 이용한 선택
+2. 아이디(id)를 이용한 선택
+3. 클래스(class)를 이용한 선택
+4. CSS 선택자(selector)를 이용한 선택
+5. HTML 객체 집합 (object collection)을 이용한 선택
+
+
+
+### DOM 요소의 내용 변경
+
+DOM을 이용하면 DOM 요소의 내용(content)이나 속성값 등을 손쉽게 변경할 수 있다.
+
+DOM 요소의 내용을 바꾸는 가장 쉬운 방법은 innerHTML 프로퍼티를 이용하는 것이다. 또한. DOM 요소의 속성 이름을 이용하면 속성값을 바로 변경할 수 있다.
+
+
+
+
+
+출처 : http://tcpschool.com/ajax/ajax_intro_basic
+
 # Ajax 정리
 
 
 
-## 회원 가입 (ajax로 id 중복 체크, 비밀번호 확인)
+## 회원 가입 ajax로 id 중복 체크, 비밀번호 확인
 
 1. ID 중복 체크
 
@@ -422,4 +649,70 @@ $(function(){
 
 
 출처 : https://zero-gravity.tistory.com/241
+
+
+
+## Ajax 에러 쉽게 확인하기
+
+```javascript
+    $.ajax({
+             type     : "POST"
+          ,  url      : "./join_prc.jsp"         
+          ,  data     : param
+          ,  dataType : "json"
+          ,  success  : function(result){
+                 alert(result.message);
+             }
+          ,  error:function(request,status,error){
+             console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+          }
+         });
+
+// 이부분이 중요 에러 메시지와 내용이 로그로 출력가능
+error:function(request,status,error){
+             console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+          }
+```
+
+출처 : [https://sirdeath.tistory.com/entry/ajax-500-internal-server-%EC%97%90%EB%9F%AC-%EB%B0%9C%EC%83%9D%EC%8B%9C](https://sirdeath.tistory.com/entry/ajax-500-internal-server-에러-발생시)
+
+
+
+
+
+## @RequestPram의 주의사항
+
+  Annotation 기반 Controller 에서는 HTTP 요청 파라미터를 @RequestParam 을 사용해서 메소드의 파라미터로 바로 전달 할 수 있다.
+
+@RequestParam 은 Key=Value 형태의 HTTP 요청 파라미터를 메소드의 파라미터에 전달해준다.
+
+```java
+//유저 아이디가 중복인지 아닌지
+@PostMapping("/api/test")
+public boolean testUserIdCheck(@RequestPram(value ="id") String id){
+   	User user = userRepository.findId(id);
+    if(user == null){
+        return true; 
+    }else{
+        return false;
+    }
+}
+
+// Ajax에서 보내는 데이터 형식은 json의 형식으로
+data : {
+    "id":"사용자아이디"
+}
+와 같은 형식이어야함 @RequestPram의 value와 key의 값이 같아야함 
+    
+```
+
+출처: https://arawn.tistory.com/34 [Arawn's DevNote]  
+
+
+
+
+
+
+
+
 
