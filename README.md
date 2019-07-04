@@ -28,7 +28,7 @@
 
 ##### 2019.07.01 :  batch 추가, 로그인 후 뒤로가기 버튼으로 다시 로그인 페이지로 가는 문제 수정
 
-#### 2019.07.04 : SingUp 80% 완성, Ajax에 대해 이해함. 부트스트랩으로 깔끔하게 만들라고 했으나 그건 추후에.... 지금은 일단 기능 구현 부터
+#### 2019.07.04 : SingUp 구현, Ajax에 대해 이해함. 부트스트랩으로 깔끔하게 만들라고 했으나 그건 추후에.... 지금은 일단 기능 구현 부터
 
 
 
@@ -51,7 +51,7 @@
 - [x] Pageable 기능에 대해 변경
 - [x] mysql utf-8 설정을 안해서 고생한 내용 추가
 - [x] 로그인 후 back button 누르면 다시 로그인 페이지로 가는 버그 수정
-- [ ] SingUp 폼 만들기
+- [x] SingUp 구현
 - [ ] 현재 사용자의 이름을 가져오는 로직 만들기
 
 ### 정리
@@ -61,5 +61,5 @@
  - [뒤로가기 버튼 제어](https://stackoverflow.com/questions/18147302/how-to-handle-back-button-using-spring-security)
  - [Spring Security OAuth2.0 파헤치기! -1](https://coding-start.tistory.com/158)
  - [스프링 Ajax 파라미터 받기](http://javakorean.com/%EC%8A%A4%ED%94%84%EB%A7%81-ajax-%ED%8C%8C%EB%9D%BC%EB%AF%B8%ED%84%B0-%EB%B0%9B%EA%B8%B0/)
-
+ - [JSON parse error: Unrecognized token 문제(Request Body로 보내지는 JSON의 행방 불명)](https://github.com/HomoEfficio/dev-tips/blob/master/Request%20Body%EB%A1%9C%20%EB%B3%B4%EB%82%B4%EC%A7%80%EB%8A%94%20JSON%EC%9D%98%20%ED%96%89%EB%B0%A9%20%EB%B6%88%EB%AA%85.md)
  

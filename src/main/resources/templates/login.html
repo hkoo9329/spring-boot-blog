@@ -3,7 +3,8 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <title>login</title>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="//unpkg.com/bootstrap@4/dist/css/bootstrap.min.css">
+
 </head>
 <body>
 
@@ -29,24 +30,38 @@
     <a href="javascript:;" class="btn_social" data-social="github"><img th:src="@{/images/github.png}" width="40px"
                                                                         height="40px"/></a>
 </div>
-<div class="container" style="text-align: center; width: 400px; display: none;" id="create_form">
-    <form>
+<div class="container" style="text-align: center; width: 50%; display: none;" id="create_form">
+    <form class="signup_form">
         <h2>회원 가입</h2>
-        <input id="id_insert" type="text"/>@
-        <input id="direct_email" type="text" readonly="readonly"style="inset-inline: auto"/>
-        <select name="selectEmail" onchange="checkEmail()">
-            <option value="">선택</option>
-            <option value="naver.com">네이버</option>
-            <option value="hanmail.net">한메일</option>
-            <option value="gmail.com">구글</option>
-            <option value="direct">직접입력</option>
-        </select>
-        <span style="inset-inline-end: auto" id="id_make_error_message"></span>
+        <br/>
+        <div>
+            <span>이메일 : </span>
+            <input id="id_insert" type="text"
+                   placeholder="이메일을 입력해주세요."/>
+            <span id="id_make_error_message"></span>
+        </div>
+        <div>
+            <span>비밀번호 : </span>
+            <input id="password_insert" type="password"
+                   placeholder="6~12자리 그리고 영문숫자의 조합으로 입력해주세요."/>
+            <span id="password_make_error_message"></span>
+        </div>
+        <div>
+            <span>닉네임 : </span>
+            <input id="nickname" type="text"/>
+            <span id="nickname_error_message"></span>
+        </div>
     </form>
+    <div class="btn-primary" id="submit_SignUp">SignUp</div>
+
 </div>
 
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script>
+    var idChecker = false;
+    var pwdChecker = false;
+    var nameCheck = false;
+
     $('.btn_social').click(function () {
         var socialType = $(this).data('social');
         window.location.replace("/oauth2/authorization/" + socialType);
@@ -55,10 +70,72 @@
     $('#create_id').click(function () {
         $('#login_form').hide();
         $('#create_form').show();
-    })
+    });
+
+    //회원가입 절차
+    $('#submit_SignUp').click(function () {
+        console.log("버튼 테스트");
+        var email = $('#id_insert').val();
+        var password = $('#password_insert').val();
+        var nickname = $('#nickname').val();
+        console.log(email + password + nickname);
+        var formData = {
+            "email": email,
+            "password": password,
+            "name": nickname
+        }
+        $.ajax({
+            type: 'POST',
+            url: '/api/create/user',
+            contentType: 'application/json',
+            data: JSON.stringify(formData),
+            success: function () {
+                console.log("성공");
+                if (!nameCheck) {
+                    alert("닉네임을 다시 설정해주세요.");
+                } else if (!idChecker) {
+                    alert("아이디를 다시 확인해주세요.");
+                } else if (!pwdChecker) {
+                    alert("비밀번호를 다시 확인해주세요.");
+                } else {
+                    alert("가입되었습니다.");
+                    $('#login_form').show();
+                    $('#create_form').hide();
+                }
+            },
+            error: function (request, status, error) {
+                console.error("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
+            }
+        });
+    });
+
+    // 닉네임 길이 휴효성 검사
+    $('#nickname').focusout(function () {
+        var nickname = $(this).val();
+        if (nickname.length > 20 || nickname.length < 2) {
+            $('#nickname_error_message').text("닉네임은 2자에서 20자 사이 입니다.").css("color", "red");
+            nameCheck = false;
+        } else {
+            $('#nickname_error_message').text("사용가능한 닉네임 입니다.").css("color", "blue");
+            nameCheck = true;
+        }
+    });
+
+    // 비밀번호 유효성 검사
+    var checker = false;
+    $('#password_insert').focusout(function () {
+        if (!checkpassword($(this).val())) {
+            $('#password_make_error_message').text("비밀번호는 숫자 영문 포함 6~12자리입니다.").css("color", "red");
+            pwdChecker = false;
+        } else {
+            $('#password_make_error_message').text("사용가능한 비밀번호 입니다.").css("color", "blue");
+            pwdChecker = true;
+        }
+    });
 
 
-    $("#id_insert").on("propertychange change keyup paste input", function () {
+    // 아이디 유효성 검사
+    $("#id_insert").focusout(function () {
         var id_text = $(this).val();
         console.log(id_text);
         var userData = {"id": id_text};
@@ -68,7 +145,14 @@
             data: {"id": id_text},
             success: function (data) {
                 if (!data) {
-                    $('#id_make_error_message').text("이메일이 존재합니다.");
+                    $('#id_make_error_message').text("이메일이 존재합니다.").css("color", "red");
+                    idChecker = false;
+                } else if (!checkEmail(id_text)) {
+                    $('#id_make_error_message').text("이메일이 형식이 올바르지 않습니다.").css("color", "red");
+                    idChecker = false;
+                } else {
+                    $('#id_make_error_message').text("사용가능한 이메일 입니다.").css("color", "blue");
+                    idChecker = true;
                 }
             },
             error: function (request, status, error) {
@@ -78,16 +162,25 @@
     });
 
 
-    function checkEmail() {
-        var f = document.forms[0];
+    function checkEmail(email) {
+        var exptext = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
+        if (!exptext.test(email)) {
+            //이메일 형식이 알파벳+숫자@알파벳+숫자.알파벳+숫자 형식이 아닐경우
+            return false;
+        } else {
+            return true;
+        }
+    }
 
-        if (f.selectEmail.value==""){
-            console.log("선택");
+    function checkpassword(password) {
+        var regex = /^[A-Za-z0-9]{6,12}$/;
+        if (!regex.test(password)) {
+            //유효성이 맞지 않는 경우
+            return false;
+        } else {
+            return true;
         }
-        if (f.selectEmail.value()=="direct"){
-            console.log("테스트");
-            $('#direct_email').readOnly=false;
-        }
+
     }
 
 </script>

@@ -14,30 +14,9 @@
     <h2 th:text="${name}"></h2>
 
     <a class="btn btn-secondary btn-lg" href="/board/list">시작하기</a>
-    <button id="testTextBox"class="btn-primary">테스트</button>
 </div>
 
 
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-    <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script>
-        $('#testTextBox').click(function () {
-
-            $.ajax({
-                type:"POST",
-                url:"/api/users",
-                dataType:"json",
-                data:{
-                    "id":"원주민"
-                },
-
-                error:function(request,status,error){
-                    console.error("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-                }
-            }).done(function (data) {
-               console.log(data);
-            });
-        })
-    </script>
 </body>
 </html>
