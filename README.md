@@ -28,6 +28,8 @@
 
 ##### 2019.07.01 :  batch 추가, 로그인 후 뒤로가기 버튼으로 다시 로그인 페이지로 가는 문제 수정
 
+#### 2019.07.04 : SingUp 80% 완성, Ajax에 대해 이해함. 부트스트랩으로 깔끔하게 만들라고 했으나 그건 추후에.... 지금은 일단 기능 구현 부터
+
 
 
 
@@ -49,6 +51,7 @@
 - [x] Pageable 기능에 대해 변경
 - [x] mysql utf-8 설정을 안해서 고생한 내용 추가
 - [x] 로그인 후 back button 누르면 다시 로그인 페이지로 가는 버그 수정
+- [ ] SingUp 폼 만들기
 - [ ] 현재 사용자의 이름을 가져오는 로직 만들기
 
 ### 정리
@@ -58,5 +61,5 @@
  - [뒤로가기 버튼 제어](https://stackoverflow.com/questions/18147302/how-to-handle-back-button-using-spring-security)
  - [Spring Security OAuth2.0 파헤치기! -1](https://coding-start.tistory.com/158)
  - [스프링 Ajax 파라미터 받기](http://javakorean.com/%EC%8A%A4%ED%94%84%EB%A7%81-ajax-%ED%8C%8C%EB%9D%BC%EB%AF%B8%ED%84%B0-%EB%B0%9B%EA%B8%B0/)
- 
+
  
