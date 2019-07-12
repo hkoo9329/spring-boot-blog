@@ -1,6 +1,7 @@
 package com.hkoo.toy.blog.controller;
 
 import com.hkoo.toy.blog.domain.User;
+import com.hkoo.toy.blog.repository.UserRepository;
 import com.hkoo.toy.blog.service.BoardService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,9 @@ import java.security.Principal;
 public class BoardController {
 
     @Autowired
-    BoardService boardService;
+    private BoardService boardService;
+    @Autowired
+    private UserRepository userRepository;
 
     @GetMapping({"", "/"})
     public String board(@RequestParam(value = "idx", defaultValue = "0") Long idx,

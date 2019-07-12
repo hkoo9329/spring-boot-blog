@@ -5,6 +5,7 @@ import com.hkoo.toy.blog.domain.enums.Grade;
 import com.hkoo.toy.blog.domain.enums.SocialType;
 import com.hkoo.toy.blog.domain.enums.UserStatus;
 import lombok.*;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -16,7 +17,7 @@ import java.time.LocalDateTime;
 @Entity
 @Table
 @Data
-public class User implements Serializable {
+public class User implements Serializable{
 
     @Id
     @Column

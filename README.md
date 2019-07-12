@@ -62,4 +62,5 @@
  - [Spring Security OAuth2.0 파헤치기! -1](https://coding-start.tistory.com/158)
  - [스프링 Ajax 파라미터 받기](http://javakorean.com/%EC%8A%A4%ED%94%84%EB%A7%81-ajax-%ED%8C%8C%EB%9D%BC%EB%AF%B8%ED%84%B0-%EB%B0%9B%EA%B8%B0/)
  - [JSON parse error: Unrecognized token 문제(Request Body로 보내지는 JSON의 행방 불명)](https://github.com/HomoEfficio/dev-tips/blob/master/Request%20Body%EB%A1%9C%20%EB%B3%B4%EB%82%B4%EC%A7%80%EB%8A%94%20JSON%EC%9D%98%20%ED%96%89%EB%B0%A9%20%EB%B6%88%EB%AA%85.md)
- 
+ - [spring security login기능 정리글](https://xmfpes.github.io/spring/spring-security/)
+ - [Spring boot에서 Spring security를 사용하여 로그인 하기](https://wedul.site/170)

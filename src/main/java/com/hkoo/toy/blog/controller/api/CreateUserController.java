@@ -34,7 +34,7 @@ public class CreateUserController {
     }
 
     @PostMapping("/create/user")
-    public void createUser(@RequestBody Map<String,String> map){
+    public void signUpUser(@RequestBody Map<String,String> map){
         String email = map.get("email");
         String password = map.get("password");
         String name = map.get("name");
@@ -48,4 +48,5 @@ public class CreateUserController {
         log.info(user.getName());
         userRepository.save(user);
     }
+
 }
