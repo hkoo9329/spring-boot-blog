@@ -5,10 +5,13 @@ import com.hkoo.toy.blog.domain.enums.SocialType;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Collection;
 
 @Getter
 @NoArgsConstructor
@@ -55,4 +58,5 @@ public class User implements Serializable {
         this.createdDate = createdDate;
         this.updatedDate = updatedDate;
     }
+
 }
