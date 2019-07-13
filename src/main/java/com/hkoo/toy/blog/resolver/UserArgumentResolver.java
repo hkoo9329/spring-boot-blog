@@ -4,6 +4,7 @@ import com.hkoo.toy.blog.annotation.Socialuser;
 import com.hkoo.toy.blog.domain.User;
 import com.hkoo.toy.blog.domain.enums.SocialType;
 import com.hkoo.toy.blog.repository.UserRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.MethodParameter;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.AuthorityUtils;
@@ -25,6 +26,7 @@ import java.util.Map;
 
 import static com.hkoo.toy.blog.domain.enums.SocialType.*;
 
+@Slf4j
 @Component
 public class UserArgumentResolver implements HandlerMethodArgumentResolver {
 
@@ -87,6 +89,7 @@ public class UserArgumentResolver implements HandlerMethodArgumentResolver {
 
     private User getKaKaoUser(Map<String, Object> map) {
         Map<String, String> propertyMap = (HashMap<String, String>) map.get("properties");
+        log.info("email : "+String.valueOf(map.get("account_email")));
         return User.builder()
                 .name(propertyMap.get("nickname"))
                 .email(String.valueOf(map.get("account_email")))
