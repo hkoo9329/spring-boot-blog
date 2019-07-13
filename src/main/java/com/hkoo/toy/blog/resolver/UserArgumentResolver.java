@@ -4,6 +4,7 @@ import com.hkoo.toy.blog.annotation.Socialuser;
 import com.hkoo.toy.blog.domain.User;
 import com.hkoo.toy.blog.domain.enums.SocialType;
 import com.hkoo.toy.blog.repository.UserRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.MethodParameter;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.AuthorityUtils;
@@ -26,6 +27,7 @@ import java.util.Map;
 import static com.hkoo.toy.blog.domain.enums.SocialType.*;
 
 @Component
+@Slf4j
 public class UserArgumentResolver implements HandlerMethodArgumentResolver {
 
     private UserRepository userRepository;
@@ -79,6 +81,7 @@ public class UserArgumentResolver implements HandlerMethodArgumentResolver {
                 .name(String.valueOf(map.get("name")))
                 .email(String.valueOf(map.get("email")))
                 .principal(String.valueOf(map.get("id")))
+                .authority("user")
                 .socialType(socialType)
                 .createdDate(LocalDateTime.now())
                 .build();
@@ -86,10 +89,12 @@ public class UserArgumentResolver implements HandlerMethodArgumentResolver {
 
     private User getKaKaoUser(Map<String, Object> map) {
         Map<String, String> propertyMap = (HashMap<String, String>) map.get("properties");
+        log.info("email : "+String.valueOf(map.get("account_email")));
         return User.builder()
                 .name(propertyMap.get("nickname"))
                 .email(String.valueOf(map.get("account_email")))
                 .principal(String.valueOf(map.get("id")))
+                .authority("user")
                 .socialType(KAKAO)
                 .createdDate(LocalDateTime.now())
                 .build();

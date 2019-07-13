@@ -17,9 +17,6 @@ import java.util.Map;
 public class CreateUserController {
 
     @Autowired
-    private UserService userService;
-
-    @Autowired
     private UserRepository userRepository;
 
 
