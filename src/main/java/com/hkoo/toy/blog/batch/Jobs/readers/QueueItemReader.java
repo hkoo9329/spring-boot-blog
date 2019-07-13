@@ -1,4 +1,4 @@
-package com.hkoo.toy.blog.batch.Jobs.readers;
+package com.hkoo.toy.blog.batch.jobs.readers;
 
 import org.springframework.batch.item.ItemReader;
 import org.springframework.batch.item.NonTransientResourceException;

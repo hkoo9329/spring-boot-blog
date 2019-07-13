@@ -67,7 +67,7 @@
 
     $('.btn_social').click(function () {
         var socialType = $(this).data('social');
-        window.location.replace("/oauth2/authorization/" + socialType);
+        location.href="/oauth2/authorization/" + socialType;
     });
 
     $('#create_id').click(function () {

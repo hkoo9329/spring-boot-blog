@@ -1,6 +1,6 @@
-package com.hkoo.toy.blog.batch.Jobs;
+package com.hkoo.toy.blog.batch.jobs;
 
-import com.hkoo.toy.blog.batch.Jobs.readers.QueueItemReader;
+import com.hkoo.toy.blog.batch.jobs.readers.QueueItemReader;
 import com.hkoo.toy.blog.domain.User;
 import com.hkoo.toy.blog.domain.enums.UserStatus;
 import com.hkoo.toy.blog.repository.UserRepository;

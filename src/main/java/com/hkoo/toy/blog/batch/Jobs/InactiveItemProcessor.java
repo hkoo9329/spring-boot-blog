@@ -1,4 +1,4 @@
-package com.hkoo.toy.blog.batch.Jobs;
+package com.hkoo.toy.blog.batch.jobs;
 
 import com.hkoo.toy.blog.domain.User;
 import org.springframework.batch.item.ItemProcessor;
