@@ -5,6 +5,7 @@ import com.hkoo.toy.blog.domain.User;
 import com.hkoo.toy.blog.domain.enums.SocialType;
 import com.hkoo.toy.blog.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.MethodParameter;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.AuthorityUtils;
@@ -30,11 +31,8 @@ import static com.hkoo.toy.blog.domain.enums.SocialType.*;
 @Component
 public class UserArgumentResolver implements HandlerMethodArgumentResolver {
 
+    @Autowired
     private UserRepository userRepository;
-
-    public UserArgumentResolver(UserRepository userRepository){
-        this.userRepository = userRepository;
-    }
 
     @Override
     public boolean supportsParameter(MethodParameter parameter) {
@@ -47,6 +45,7 @@ public class UserArgumentResolver implements HandlerMethodArgumentResolver {
                                   NativeWebRequest webRequest, WebDataBinderFactory binderFactory) throws Exception {
         HttpSession session = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest().getSession();
         User user = (User) session.getAttribute("user");
+        //log.info("user : " +user.toString());
         return getUser(user, session);
     }
 
@@ -89,7 +88,6 @@ public class UserArgumentResolver implements HandlerMethodArgumentResolver {
 
     private User getKaKaoUser(Map<String, Object> map) {
         Map<String, String> propertyMap = (HashMap<String, String>) map.get("properties");
-        log.info("email : "+String.valueOf(map.get("account_email")));
         return User.builder()
                 .name(propertyMap.get("nickname"))
                 .email(String.valueOf(map.get("account_email")))
