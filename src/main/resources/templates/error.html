@@ -9,8 +9,11 @@
 
 <div th:class="container" style="display: inline-block; text-align: center;">
     <h2>또 버그야! 하핫!</h2>
-    <img th:src="@{http://simg.donga.com/ugc/MLBPARK/Board/15/04/05/37/1504053704875.jpg}"/>
+    <img th:src="@{https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fk.kakaocdn.net%2Fdn%2FWkoti%2Fbtqwrp3xqup%2F4fDRbyze3eOlyjEI75fikk%2Fimg.jpg}"/>
 
+    <br/>error code : <span th:text="${code}"></span>
+    <br/>error msg : <span th:text="${msg}"></span>
+    <br/>timestamp : <span th:text="${timestamp}"></span>
     <h3>죄송합니다. 문제가 생겼습니다.</h3>
 </div>
 </body>
