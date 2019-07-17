@@ -1,12 +1,14 @@
 package com.hkoo.toy.blog.domain;
 
 
+import com.hkoo.toy.blog.domain.enums.Grade;
 import com.hkoo.toy.blog.domain.enums.SocialType;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
@@ -16,10 +18,12 @@ import java.util.Collection;
 import java.util.List;
 
 @Getter
+@EqualsAndHashCode(of = {"idx","email"})
 @NoArgsConstructor
 @Entity
 @Table
 public class User implements UserDetails {
+
 
     @Id
     @Column
@@ -45,6 +49,13 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private SocialType socialType;
 
+    @Column
+    @Enumerated(EnumType.STRING)
+    private UserStatus status;
+
+    @Column
+    @Enumerated(EnumType.STRING)
+    private Grade grade;
 
     @Column
     private LocalDateTime createdDate;
@@ -60,6 +71,8 @@ public class User implements UserDetails {
         this.email = email;
         this.principal = principal;
         this.socialType = socialType;
+        this.status = status;
+        this.grade = grade;
         this.createdDate = createdDate;
         this.updatedDate = updatedDate;
         this.authority = authority;
@@ -95,5 +108,10 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public User setInactive(){
+        status = UserStatus.INACTIVE;
+        return this;
     }
 }

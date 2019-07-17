@@ -63,14 +63,11 @@
     var pwdChecker = false;
     var nameCheck = false;
     //
-
-
     $('.btn_social').click(function () {
         var socialType = $(this).data('social');
         window.location.replace("/oauth2/authorization/" + socialType);
     });
-
-
+  
     $('#create_id').click(function () {
         $('#login_form').hide();
         $('#create_form').show();

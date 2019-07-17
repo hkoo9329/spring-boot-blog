@@ -69,8 +69,7 @@ public class UserArgumentResolver implements HandlerMethodArgumentResolver {
     }
 
     private User convertUser(String authority, Map<String, Object> map) {
-        if(NAVER.isEquals(authority)) return getNaverUser(map);
-        else if(GOOGLE.isEquals(authority)) return getModernUser(GOOGLE, map);
+        if(GOOGLE.isEquals(authority)) return getModernUser(GOOGLE, map);
         else if(KAKAO.isEquals(authority)) return getKaKaoUser(map);
         else if(GITHUB.isEquals(authority)) return getModernUser(GITHUB, map);
         return null;
@@ -93,15 +92,6 @@ public class UserArgumentResolver implements HandlerMethodArgumentResolver {
                 .email(String.valueOf(map.get("account_email")))
                 .principal(String.valueOf(map.get("id")))
                 .socialType(KAKAO)
-                .createdDate(LocalDateTime.now())
-                .build();
-    }
-    private User getNaverUser(Map<String, Object> map) {
-        Map<String, String> propertyMap = (HashMap<String, String>) map.get("properties");
-        return User.builder()
-                .name(propertyMap.get("name"))
-                .email(String.valueOf(map.get("email")))
-                .socialType(NAVER)
                 .createdDate(LocalDateTime.now())
                 .build();
     }

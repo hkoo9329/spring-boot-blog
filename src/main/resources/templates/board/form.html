@@ -120,6 +120,7 @@
     $('#delete').click(function () {
         $.ajax({
             url: "http://localhost:8959/boards/" + $('#board_idx').val(),
+
             type: "DELETE",
             success: function () {
                 alert('삭제 성공!');

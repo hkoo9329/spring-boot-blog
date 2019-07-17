@@ -14,17 +14,21 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+
 @Slf4j
 @Controller
 @RequestMapping("/board")
+@Slf4j
 public class BoardController {
 
     @Autowired
-    BoardService boardService;
+    private BoardService boardService;
+    @Autowired
+    private UserRepository userRepository;
 
-    @GetMapping({"","/"})
+    @GetMapping({"", "/"})
     public String board(@RequestParam(value = "idx", defaultValue = "0") Long idx,
-                        Model model){
+                        Model model) {
         model.addAttribute("board", boardService.findBoardByIdx(idx));
         return "/board/form";
     }

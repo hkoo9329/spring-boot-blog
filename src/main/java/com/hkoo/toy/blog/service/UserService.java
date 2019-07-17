@@ -6,4 +6,5 @@ import java.util.Map;
 
 public interface UserService extends UserDetailsService {
     void signUpUser(Map<String, String> userInfo);
+
 }
