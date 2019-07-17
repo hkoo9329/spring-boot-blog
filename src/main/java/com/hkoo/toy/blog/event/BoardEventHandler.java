@@ -14,7 +14,7 @@ public class BoardEventHandler {
     }
 
     @HandleBeforeSave
-    public void beforeSaveBoard(Board board){
+    public void beforeSaveBaord(Board board){
         board.setUpdatedDateNow();
     }
 }

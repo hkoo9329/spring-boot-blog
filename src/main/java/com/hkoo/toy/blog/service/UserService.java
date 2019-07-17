@@ -1,17 +1,10 @@
 package com.hkoo.toy.blog.service;
 
-import com.hkoo.toy.blog.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
-@Service
-public class UserService {
+import java.util.Map;
 
-    @Autowired
-    private UserRepository userRepository;
+public interface UserService extends UserDetailsService {
+    void signUpUser(Map<String, String> userInfo);
 
-    public String userSignUpChecker(){
-
-        return null;
-    }
 }

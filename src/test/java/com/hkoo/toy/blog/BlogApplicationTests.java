@@ -1,10 +1,12 @@
 package com.hkoo.toy.blog;
 
+import com.hkoo.toy.blog.domain.User;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.sql.DataSource;
@@ -28,6 +30,11 @@ public class BlogApplicationTests {
     }
     @Test
     public void contextLoads() {
+    }
+
+    @Test
+    public void 로그인_유저정보_확인_테스트(){
+        User user =(User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     }
 
 }

@@ -11,13 +11,14 @@
 <div class="container" style="text-align: center; width: 400px;" id="login_form">
     <br/>
     <h2>로그인(아직 구현중 )</h2><br/><br/>
-    <div class="box">
-        <input type="text" class="form-control" placeholder="아이디를 입력해 주세요"/>
-        <input type="password" class="form-control" placeholder="비밀번호를 입력해 주세요"/>
-        <div class="btn-primary" id="login_submit">로그인</div>
-        <div class="btn-primary" id="create_id">회원가입</div>
-    </div>
-
+    <form name="f" th:action="@{/login}" method="post">
+        <input type="text" id="username" name="username" class="form-control" placeholder="아이디를 입력해 주세요"/>
+        <input type="password" id="password" name="password" class="form-control" placeholder="비밀번호를 입력해 주세요"/>
+        <div class="form-actions">
+            <button class="btn-primary" type="submit" id="login_submit">로그인</button>
+        </div>
+    </form>
+    <div class="btn-primary" id="create_id">회원가입</div>
     <br>
     <!-- 추후 추가 예정 네이버 OAuth2 로그인
     <a href="javascript:;" class="btn_social" data-social="naver"><img th:src="@{/images/naver.png}" width="40px"
@@ -62,14 +63,11 @@
     var pwdChecker = false;
     var nameCheck = false;
     //
-
-
-
     $('.btn_social').click(function () {
         var socialType = $(this).data('social');
         window.location.replace("/oauth2/authorization/" + socialType);
     });
-
+  
     $('#create_id').click(function () {
         $('#login_form').hide();
         $('#create_form').show();
@@ -77,11 +75,9 @@
 
     //회원가입 절차
     $('#submit_SignUp').click(function () {
-        console.log("버튼 테스트");
         var email = $('#id_insert').val();
         var password = $('#password_insert').val();
         var nickname = $('#nickname').val();
-        console.log(email + password + nickname);
         var formData = {
             "email": email,
             "password": password,

@@ -14,7 +14,10 @@
         <h1>게시글 목록</h1>
     </div>
     <div>
-        <h3 style="text-align: right" th:text="${currentUser}">님 안녕하세요!</h3>
+        <h3 style="text-align: right" >
+            <span th:text="${user.name}"></span>
+            <span>님 안녕하세요!</span>
+        </h3>
     </div>
     <div class="pull-right" style="width:100px;margin:10px 0;">
         <a href="/board" class="btn btn-primary btn-block">등록</a>

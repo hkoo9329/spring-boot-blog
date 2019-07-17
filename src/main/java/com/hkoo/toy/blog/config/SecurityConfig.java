@@ -3,7 +3,9 @@ package com.hkoo.toy.blog.config;
 
 import com.hkoo.toy.blog.event.BoardEventHandler;
 import com.hkoo.toy.blog.oauth.CustomOAuth2Provider;
+import com.hkoo.toy.blog.service.UserService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.security.oauth2.client.OAuth2ClientProperties;
 import org.springframework.context.annotation.Bean;
@@ -13,6 +15,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.oauth2.client.CommonOAuth2Provider;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.client.registration.ClientRegistration;
 import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
 import org.springframework.security.oauth2.client.registration.InMemoryClientRegistrationRepository;
@@ -32,16 +35,26 @@ import static com.hkoo.toy.blog.domain.enums.SocialType.*;
 @Slf4j
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
+    @Autowired
+    private UserService userService;
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         CharacterEncodingFilter filter = new CharacterEncodingFilter();
         http
                 .authorizeRequests()
-                .antMatchers("/", "/oauth2/**", "/login/**", "/css/**", "/images/**", "/js/**", "/console/**","/api/**").permitAll()
+                .antMatchers("/", "/oauth2/**", "/login/**", "/css/**", "/images/**", "/js/**", "/console/**").permitAll()
+                .antMatchers("/api/check/id","/api/create/user").permitAll()// api 접근은 모두 허용
+                //.antMatchers("/naver").hasAuthority(NAVER.getRoleType())
                 .antMatchers("/google").hasAuthority(GOOGLE.getRoleType())
                 .antMatchers("/kakao").hasAuthority(KAKAO.getRoleType())
                 .antMatchers("/github").hasAuthority(GITHUB.getRoleType())
                 .anyRequest().authenticated()
+                .and()
+                .formLogin()
+                .loginPage("/login")
+                .loginProcessingUrl("/login")
+                .defaultSuccessUrl("/loginSuccess")
                 .and()
                 .oauth2Login()
                 .defaultSuccessUrl("/loginSuccess")
@@ -52,9 +65,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .exceptionHandling()
                 .authenticationEntryPoint(new LoginUrlAuthenticationEntryPoint("/login"))
                 .and()
-                .formLogin()
-                .successForwardUrl("/board/list")
-                .and()
                 .logout()
                 .logoutUrl("/logout")
                 .logoutSuccessUrl("/")
@@ -64,6 +74,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .addFilterBefore(filter, CsrfFilter.class)
                 .csrf().disable();
     }
+
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(userService).passwordEncoder(passwordEncoder());
+    }
+
+    @Bean
+    public BCryptPasswordEncoder passwordEncoder(){
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+        return bCryptPasswordEncoder;
+    }
+
 
     @Bean
     public ClientRegistrationRepository clientRegistrationRepository(OAuth2ClientProperties oAuth2ClientProperties, @Value("${custom.oauth2.kakao.client-id}") String kakaoClientId) {
@@ -117,8 +139,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
         }
         return null;
     }
-
-
     @Bean
     BoardEventHandler boardEventHandler(){
         return new BoardEventHandler();
