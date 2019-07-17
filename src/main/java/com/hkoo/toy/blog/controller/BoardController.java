@@ -18,13 +18,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Slf4j
 @Controller
 @RequestMapping("/board")
-@Slf4j
 public class BoardController {
 
     @Autowired
     private BoardService boardService;
-    @Autowired
-    private UserRepository userRepository;
 
     @GetMapping({"", "/"})
     public String board(@RequestParam(value = "idx", defaultValue = "0") Long idx,

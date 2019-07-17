@@ -2,33 +2,41 @@
 
 
 
-## 사용 예정 기술
+## 사용 기술
 
-1. 당연히 Spring boot를 이용 version은 2.1.5
-2. OAuth2  = > 네이버, 구글, 깃헙, 카카오 정도로 생각중
-3. thymeleaf를 공부하고 활용하려고 함
-4. 사용자 정보 저장을 위해 mysql을 이용하려고함
-5. 그 외 기타 등등 생각나면 추가하도록 함
+1. Spring Boot (version은 2.1.5)
 
+2. Spring Security
 
+3. OAuth2  ( Google, Github, Kakao )  - naver는 추가 예정   ~~언제가 될지....~~
 
+4. thymeleaf
 
+5. mysql
+
+   
 
 ![](http://www.pickis.co.kr/content/contents/upload/2017-04/58edd86a0f389.JPG)
 
 가 되지 않도록.....
 
 
+
+
 ### 진행상황
 
 ##### 2019.06.12 : OAuth2 Google, kakko 추가 api에서 redirect 변경 해야함 NAVER는 트러블 개선 필요
 ##### 2019.06.22 : google, kakao, github OAuth2, 구현 but naver OAuth2는 추후에 추가 예정
-##### ~~2019.06.24 : CRUD를 위한 api 서버 생성 -> [https://github.com/leejuhyeok/spring-boot-blog-api]~~
+##### ~~2019.06.24 : CRUD를 위한 api 서버 생성 -> [https://github.com/leejuhyeok/spring-boot-blog-api]~~(지금은 따로 api 서버를 만들지 않을 예정이라서 변경)
 ##### 2019.06.25 : data-rest으로 변경 (같은 포트를 사용함으로 CORS를 사용 X , 생성했던 api 서버 repo는 유지)
 
 ##### 2019.07.01 :  batch 추가, 로그인 후 뒤로가기 버튼으로 다시 로그인 페이지로 가는 문제 수정
 
 #### 2019.07.04 : SingUp 구현, Ajax에 대해 이해함. 부트스트랩으로 깔끔하게 만들라고 했으나 그건 추후에.... 지금은 일단 기능 구현 부터
+
+#### 2019.7.17 : 로그인 기능, 회원가입 기능 추가 ~~(안쓰다가 한번에 씀, 여러가지를 더 했으나 지금 기억나는 것은 이것뿐 하핫)~~
+
+
 
 
 
@@ -52,7 +60,10 @@
 - [x] mysql utf-8 설정을 안해서 고생한 내용 추가
 - [x] 로그인 후 back button 누르면 다시 로그인 페이지로 가는 버그 수정
 - [x] SingUp 구현
-- [ ] 현재 사용자의 이름을 가져오는 로직 만들기
+- [x] 현재 사용자의 이름을 가져오는 로직 만들기
+- [x] 회원가입 기능 추가
+- [x] DB를 기반으로 하는 로그인 기능 추가
+- [x] 비밀번호를 암호화 해서 저장하는 기능 추가
 
 ### 정리
  - [필요 코드들](./study/Codes.md)

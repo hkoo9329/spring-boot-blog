@@ -3,7 +3,9 @@ package com.hkoo.toy.blog.domain;
 
 import com.hkoo.toy.blog.domain.enums.Grade;
 import com.hkoo.toy.blog.domain.enums.SocialType;
+import com.hkoo.toy.blog.domain.enums.UserStatus;
 import lombok.Builder;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
@@ -71,8 +73,9 @@ public class User implements UserDetails {
         this.email = email;
         this.principal = principal;
         this.socialType = socialType;
-        this.status = status;
-        this.grade = grade;
+//        this.status = status;
+//        this.grade = grade;
+        // 나중에 추가
         this.createdDate = createdDate;
         this.updatedDate = updatedDate;
         this.authority = authority;
@@ -110,8 +113,4 @@ public class User implements UserDetails {
         return true;
     }
 
-    public User setInactive(){
-        status = UserStatus.INACTIVE;
-        return this;
-    }
 }
