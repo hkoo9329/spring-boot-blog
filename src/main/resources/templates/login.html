@@ -6,10 +6,11 @@
     <link rel="stylesheet" href="//unpkg.com/bootstrap@4/dist/css/bootstrap.min.css">
 
     <style>
-        button{
+        button {
             display: inline;
+            margin: 10px;
             padding: 10px;
-
+            width: 150px;
         }
     </style>
 </head>
@@ -28,8 +29,6 @@
         </div>
     </form>
 
-
-    <br/>
     <br/>
     <!-- 추후 추가 예정 네이버 OAuth2 로그인
     <a href="javascript:;" class="btn_social" data-social="naver"><img th:src="@{/images/naver.png}" width="40px"
@@ -73,12 +72,29 @@
     var idChecker = false;
     var pwdChecker = false;
     var nameCheck = false;
-    //
+    
+    //유저가 로그인 후에 다시 뒤로가기 버튼으로 로그인 화면으로 오는 것을 방지
+    $(window).bind("pageshow", function (event) {
+        console.log("test");
+        $.ajax({
+            type:'GET',
+            url:'/api/check/user',
+            success: function (data) {
+                if(data){
+                    console.log("test");
+                    window.location.replace("/");
+                }else{
+                    console.log("test");
+                }
+            }
+        })
+    });
+
     $('.btn_social').click(function () {
         var socialType = $(this).data('social');
         window.location.replace("/oauth2/authorization/" + socialType);
     });
-  
+
     $('#create_id').click(function () {
         $('#login_form').hide();
         $('#create_form').show();
