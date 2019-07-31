@@ -5,7 +5,15 @@
     <title>login</title>
     <link rel="stylesheet" href="//unpkg.com/bootstrap@4/dist/css/bootstrap.min.css">
 
+    <style>
+        button{
+            display: inline;
+            padding: 10px;
+
+        }
+    </style>
 </head>
+
 <body>
 
 <div class="container" style="text-align: center; width: 400px;" id="login_form">
@@ -15,21 +23,24 @@
         <input type="text" id="username" name="username" class="form-control" placeholder="아이디를 입력해 주세요"/>
         <input type="password" id="password" name="password" class="form-control" placeholder="비밀번호를 입력해 주세요"/>
         <div class="form-actions">
-            <button class="btn-primary" type="submit" id="login_submit">로그인</button>
+            <button class="btn btn-primary btn-lg" type="submit" id="login_submit">로그인</button>
+            <button class="btn btn-primary btn-lg" id="create_id">회원가입</button>
         </div>
     </form>
-    <div class="btn-primary" id="create_id">회원가입</div>
-    <br>
+
+
+    <br/>
+    <br/>
     <!-- 추후 추가 예정 네이버 OAuth2 로그인
     <a href="javascript:;" class="btn_social" data-social="naver"><img th:src="@{/images/naver.png}" width="40px"
                                                                           height="40px"/></a>
     -->
-    <a href="javascript:;" class="btn_social" data-social="google"><img th:src="@{/images/google.png}" width="40px"
-                                                                        height="40px"/></a>
-    <a href="javascript:;" class="btn_social" data-social="kakao"><img th:src="@{/images/kakao.png}" width="40px"
-                                                                       height="40px"/></a>
-    <a href="javascript:;" class="btn_social" data-social="github"><img th:src="@{/images/github.png}" width="40px"
-                                                                        height="40px"/></a>
+    <a href="javascript:;" class="btn_social" data-social="google"><img th:src="@{/images/google.png}" width="60px"
+                                                                        height="60px"/></a>
+    <a href="javascript:;" class="btn_social" data-social="kakao"><img th:src="@{/images/kakao.png}" width="60px"
+                                                                       height="60px"/></a>
+    <a href="javascript:;" class="btn_social" data-social="github"><img th:src="@{/images/github.png}" width="60px"
+                                                                        height="60px"/></a>
 </div>
 <div class="container" style="text-align: center; width: 50%; display: none;" id="create_form">
     <form class="signup_form">
