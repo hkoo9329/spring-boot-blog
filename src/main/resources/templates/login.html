@@ -20,7 +20,7 @@
 <div class="container" style="text-align: center; width: 400px;" id="login_form">
     <br/>
     <h2>로그인(아직 구현중 )</h2><br/><br/>
-    <form name="f" th:action="@{/login}" method="post">
+    <form id="f" name="f" method="post">
         <input type="text" id="username" name="username" class="form-control" placeholder="아이디를 입력해 주세요"/>
         <input type="password" id="password" name="password" class="form-control" placeholder="비밀번호를 입력해 주세요"/>
         <div class="form-actions">
@@ -72,22 +72,21 @@
     var idChecker = false;
     var pwdChecker = false;
     var nameCheck = false;
-    
-    //유저가 로그인 후에 다시 뒤로가기 버튼으로 로그인 화면으로 오는 것을 방지
-    $(window).bind("pageshow", function (event) {
-        console.log("test");
+
+    // 로그인 ajax 통신
+    $('#login_submit').click(function () {
+        var formData = $("#f").serialize();
         $.ajax({
-            type:'GET',
-            url:'/api/check/user',
+            type:'POST',
+            url:'/login',
+            data: formData,
             success: function (data) {
-                if(data){
-                    console.log("test");
-                    window.location.replace("/");
-                }else{
-                    console.log("test");
-                }
+                window.location.replace("/board/list");
+            },
+            error: function (request, status, error) {
+                console.error("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
             }
-        })
+        });
     });
 
     $('.btn_social').click(function () {
