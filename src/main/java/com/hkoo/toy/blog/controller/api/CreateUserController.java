@@ -5,6 +5,7 @@ import com.hkoo.toy.blog.repository.UserRepository;
 import com.hkoo.toy.blog.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
@@ -35,6 +36,15 @@ public class CreateUserController {
     @PostMapping("/create/user")
     public void signUpUser(@RequestBody Map<String,String> map){
         userService.signUpUser(map);
+    }
+
+    @GetMapping("/check/user")
+    public boolean userLoginCheck( @AuthenticationPrincipal User user){
+        if (user != null){
+            return true;
+        }else{
+            return false;
+        }
     }
 
 }
