@@ -37,4 +37,9 @@ public class CreateUserController {
         userService.signUpUser(map);
     }
 
+    @PostMapping("/create/email")
+    public void updateEmail(@RequestBody String map){
+        log.info("email : "+map);
+    }
+
 }
