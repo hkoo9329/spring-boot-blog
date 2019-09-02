@@ -15,7 +15,6 @@
     </div>
     <div>
         <h3 style="text-align: right" >
-            <span id="email" style="display: none" th:text="${user.email}"></span>
             <span th:text="${user.name}"></span>
             <span>님 안녕하세요!</span>
         </h3>
@@ -82,22 +81,34 @@
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script>
     var idChecker = false;
-    var email = $("#email").val();
 
     $(document).ready(function () {
-        if(email==''){
-            $("#main").hide();
-            $("#getEmail").show();
-        }
+        $.ajax({
+            type:'POST',
+            url:'/api/check/email',
+            success:function (data) {
+                if(data){
+                    $("#main").hide();
+                    $("#getEmail").show();
+                }
+            },
+            error: function (request, status, error) {
+                console.error("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
+            }
+        });
     });
 
     $("#submit_email").click(function () {
+        if(!idChecker){
+            alert("올바른 이메일을 입력해주세요");
+            return;
+        }
         var id = $("#id_insert").val();
         $.ajax({
             type: 'POST',
             url: '/api/create/email',
             contentType: 'application/json',
-            data: JSON.stringify(id),
+            data: id,
             success: function () {
                 alert("이메일 입력이 완료되었습니다!");
                 $("#main").show();

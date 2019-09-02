@@ -4,10 +4,7 @@ package com.hkoo.toy.blog.domain;
 import com.hkoo.toy.blog.domain.enums.Grade;
 import com.hkoo.toy.blog.domain.enums.SocialType;
 import com.hkoo.toy.blog.domain.enums.UserStatus;
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
@@ -24,6 +21,7 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table
+@Data
 public class User implements UserDetails {
 
 

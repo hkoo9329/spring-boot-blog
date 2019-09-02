@@ -1,5 +1,6 @@
 package com.hkoo.toy.blog.controller.api;
 
+import com.hkoo.toy.blog.annotation.Socialuser;
 import com.hkoo.toy.blog.domain.User;
 import com.hkoo.toy.blog.repository.UserRepository;
 import com.hkoo.toy.blog.service.UserService;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
+import java.util.regex.Pattern;
 
 @Slf4j
 @RestController
@@ -38,8 +40,13 @@ public class CreateUserController {
     }
 
     @PostMapping("/create/email")
-    public void updateEmail(@RequestBody String map){
-        log.info("email : "+map);
+    public void updateEmail(@RequestBody String email, @Socialuser User user){
+        userService.updateUserEmail(email,user);
+    }
+    @PostMapping("/check/email")
+    public boolean userEmailCheck(@Socialuser User user){
+        boolean checker = (user.getEmail().equals("null"));
+        return checker;
     }
 
 }

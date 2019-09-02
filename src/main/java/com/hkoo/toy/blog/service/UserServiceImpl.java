@@ -1,9 +1,11 @@
 package com.hkoo.toy.blog.service;
 
+import com.hkoo.toy.blog.annotation.Socialuser;
 import com.hkoo.toy.blog.domain.User;
 import com.hkoo.toy.blog.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -42,4 +44,12 @@ public class UserServiceImpl implements UserService {
                 .build();
         userRepository.save(user);
     }
+
+    @Override
+    public void updateUserEmail(String email, User user) {
+        log.info(email);
+        user.setEmail(email);
+        userRepository.save(user);
+    }
+
 }

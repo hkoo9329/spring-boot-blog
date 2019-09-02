@@ -56,7 +56,7 @@ public class UserArgumentResolver implements HandlerMethodArgumentResolver {
                 Map<String, Object> map = authentication.getPrincipal().getAttributes();
                 User convertUser = convertUser(authentication.getAuthorizedClientRegistrationId(), map);
 
-                user = userRepository.findByEmail(convertUser.getEmail());
+                user = userRepository.findByPrincipal(convertUser.getPrincipal());
                 if (user == null) { user = userRepository.save(convertUser); }
 
                 setRoleIfNotSame(user, authentication, map);
