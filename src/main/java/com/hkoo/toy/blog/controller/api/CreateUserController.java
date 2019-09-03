@@ -6,6 +6,7 @@ import com.hkoo.toy.blog.repository.UserRepository;
 import com.hkoo.toy.blog.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
@@ -43,7 +44,8 @@ public class CreateUserController {
         userService.updateUserEmail(email,user);
     }
     @PostMapping("/check/email")
-    public boolean userEmailCheck(@Socialuser User user){
+    public boolean userEmailCheck(@Socialuser User socialUser, @AuthenticationPrincipal User FormUser){
+        User user = FormUser != null ? FormUser : socialUser;
         boolean checker = (user.getEmail().equals("null"));
         return checker;
     }
