@@ -6,7 +6,6 @@
     <link rel="stylesheet" th:href="@{/css/base.css}"/>
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
 </head>
-<body>
 <div th:replace="layout/header::header"></div>
 
 <div class="container" id="main">
@@ -68,18 +67,17 @@
     </nav>
     <!-- /Pagination -->
 </div>
-
+<br/>
+<br/>
 <div th:replace="layout/footer::footer"></div>
 
-<div class="container" id="getEmail" style="display: none">
-    <p>이메일을 입력해주세요!</p>
-    <input id="id_insert" type="text"
-           placeholder="이메일을 입력해주세요."/>
-    <span id="id_make_error_message"></span>
-    <div class="btn-primary" id="submit_email">입력</div>
-</div>
-
-<div th:replace="layout/footer::footer"></div>
+<!--<div class="container" id="getEmail" style="display: none">-->
+<!--    <p>이메일을 입력해주세요!</p>-->
+<!--    <input id="id_insert" type="text"-->
+<!--           placeholder="이메일을 입력해주세요."/>-->
+<!--    <span id="id_make_error_message"></span>-->
+<!--    <div class="btn-primary" id="submit_email">입력</div>-->
+<!--</div>-->
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script>
     var idChecker = false;
