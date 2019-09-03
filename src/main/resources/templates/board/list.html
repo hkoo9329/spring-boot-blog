@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <title>Board Form</title>
-    <link rel="stylesheet" th:href="@{/css/base.css}" />
-    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/base.css}"/>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
 </head>
-<body>
 <div th:replace="layout/header::header"></div>
 
 <div class="container" id="main">
@@ -14,7 +13,7 @@
         <h1>게시글 목록</h1>
     </div>
     <div>
-        <h3 style="text-align: right" >
+        <h3 style="text-align: right">
             <span th:text="${user.name}"></span>
             <span>님 안녕하세요!</span>
         </h3>
@@ -48,13 +47,15 @@
     <br/>
     <!-- Pagination -->
     <nav aria-label="Page navigation" style="text-align:center;">
-        <ul class="pagination" th:with="startNumber=${T(Math).floor(boardList.number/10)}*10+1, endNumber=(${boardList.totalPages} > ${startNumber}+9) ? ${startNumber}+9 : ${boardList.totalPages}">
+        <ul class="pagination"
+            th:with="startNumber=${T(Math).floor(boardList.number/10)}*10+1, endNumber=(${boardList.totalPages} > ${startNumber}+9) ? ${startNumber}+9 : ${boardList.totalPages}">
             <li><a aria-label="Previous" href="/board/list?page=1">&laquo;</a></li>
             <li th:style="${boardList.first} ? 'display:none'">
                 <a th:href="@{/board/list(page=${boardList.number})}">&lsaquo;</a>
             </li>
 
-            <li th:each="page :${#numbers.sequence(startNumber, endNumber)}" th:class="(${page} == ${boardList.number}+1) ? 'active'">
+            <li th:each="page :${#numbers.sequence(startNumber, endNumber)}"
+                th:class="(${page} == ${boardList.number}+1) ? 'active'">
                 <a th:href="@{/board/list(page=${page})}" th:text="${page}"><span class="sr-only"></span></a>
             </li>
 
@@ -66,6 +67,100 @@
     </nav>
     <!-- /Pagination -->
 </div>
+<<<<<<< HEAD
 
+=======
+<br/>
+<br/>
+<div th:replace="layout/footer::footer"></div>
+
+<!--<div class="container" id="getEmail" style="display: none">-->
+<!--    <p>이메일을 입력해주세요!</p>-->
+<!--    <input id="id_insert" type="text"-->
+<!--           placeholder="이메일을 입력해주세요."/>-->
+<!--    <span id="id_make_error_message"></span>-->
+<!--    <div class="btn-primary" id="submit_email">입력</div>-->
+<!--</div>-->
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script>
+    var idChecker = false;
+
+    $(document).ready(function () {
+        $.ajax({
+            type: 'POST',
+            url: '/api/check/email',
+            success: function (data) {
+                if (data) {
+                    $("#main").hide();
+                    $("#getEmail").show();
+                }
+            },
+            error: function (request, status, error) {
+                console.error("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
+            }
+        });
+    });
+
+    $("#submit_email").click(function () {
+        if (!idChecker) {
+            alert("올바른 이메일을 입력해주세요");
+            return;
+        }
+        var id = $("#id_insert").val();
+        $.ajax({
+            type: 'POST',
+            url: '/api/create/email',
+            contentType: 'application/json',
+            data: id,
+            success: function () {
+                alert("이메일 입력이 완료되었습니다!");
+                $("#main").show();
+                $("#getEmail").hide();
+            },
+            error: function (request, status, error) {
+                console.error("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
+            }
+        });
+    });
+
+    // 아이디 유효성 검사
+    $("#id_insert").focusout(function () {
+        var id_text = $(this).val();
+        console.log(id_text);
+        var userData = {"id": id_text};
+        $.ajax({
+            type: "POST",
+            url: "/api/check/id",
+            data: {"id": id_text},
+            success: function (data) {
+                if (!data) {
+                    $('#id_make_error_message').text("이메일이 존재합니다.").css("color", "red");
+                    idChecker = false;
+                } else if (!checkEmail(id_text)) {
+                    $('#id_make_error_message').text("이메일이 형식이 올바르지 않습니다.").css("color", "red");
+                    idChecker = false;
+                } else {
+                    $('#id_make_error_message').text("사용가능한 이메일 입니다.").css("color", "blue");
+                    idChecker = true;
+                }
+            },
+            error: function (request, status, error) {
+                console.error("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
+            }
+        });
+    });
+
+
+    function checkEmail(email) {
+        var exptext = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
+        if (!exptext.test(email)) {
+            //이메일 형식이 알파벳+숫자@알파벳+숫자.알파벳+숫자 형식이 아닐경우
+            return false;
+        } else {
+            return true;
+        }
+    }
+</script>
+>>>>>>> release
 </body>
 </html>
