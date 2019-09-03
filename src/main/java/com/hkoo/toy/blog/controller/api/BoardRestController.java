@@ -1,4 +1,4 @@
-package com.hkoo.toy.blog.controller;
+package com.hkoo.toy.blog.controller.api;
 
 import com.hkoo.toy.blog.domain.Board;
 import com.hkoo.toy.blog.repository.BoardRepository;
