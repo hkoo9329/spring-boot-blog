@@ -14,6 +14,7 @@
 
 5. mysql
 
+6. JQuery
    
 
 ![](http://www.pickis.co.kr/content/contents/upload/2017-04/58edd86a0f389.JPG)

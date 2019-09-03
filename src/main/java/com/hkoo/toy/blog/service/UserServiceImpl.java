@@ -7,8 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
@@ -42,4 +40,12 @@ public class UserServiceImpl implements UserService {
                 .build();
         userRepository.save(user);
     }
+
+    @Override
+    public void updateUserEmail(String email, User user) {
+        log.info(email);
+        user.setEmail(email);
+        userRepository.save(user);
+    }
+
 }

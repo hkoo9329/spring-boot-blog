@@ -1,5 +1,6 @@
 package com.hkoo.toy.blog.controller.api;
 
+import com.hkoo.toy.blog.annotation.Socialuser;
 import com.hkoo.toy.blog.domain.User;
 import com.hkoo.toy.blog.repository.UserRepository;
 import com.hkoo.toy.blog.service.UserService;
@@ -37,14 +38,15 @@ public class CreateUserController {
     public void signUpUser(@RequestBody Map<String,String> map){
         userService.signUpUser(map);
     }
-
-    @GetMapping("/check/user")
-    public boolean userLoginCheck( @AuthenticationPrincipal User user){
-        if (user != null){
-            return true;
-        }else{
-            return false;
-        }
+    @PostMapping("/create/email")
+    public void updateEmail(@RequestBody String email, @Socialuser User user){
+        userService.updateUserEmail(email,user);
+    }
+    @PostMapping("/check/email")
+    public boolean userEmailCheck(@Socialuser User socialUser, @AuthenticationPrincipal User FormUser){
+        User user = FormUser != null ? FormUser : socialUser;
+        boolean checker = (user.getEmail().equals("null"));
+        return checker;
     }
 
 }
