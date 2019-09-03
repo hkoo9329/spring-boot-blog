@@ -38,19 +38,15 @@ public class CreateUserController {
     public void signUpUser(@RequestBody Map<String,String> map){
         userService.signUpUser(map);
     }
-<<<<<<< HEAD
 
-<<<<<<< HEAD
     @GetMapping("/check/user")
-    public boolean userLoginCheck( @AuthenticationPrincipal User user){
-        if (user != null){
+    public boolean userLoginCheck( @AuthenticationPrincipal User user) {
+        if (user != null) {
             return true;
-        }else{
+        } else {
             return false;
         }
-=======
-=======
->>>>>>> 96b21bfff1896935d6ca2d665a16a8334b4fd1a4
+    }
     @PostMapping("/create/email")
     public void updateEmail(@RequestBody String email, @Socialuser User user){
         userService.updateUserEmail(email,user);
@@ -60,10 +56,6 @@ public class CreateUserController {
         User user = FormUser != null ? FormUser : socialUser;
         boolean checker = (user.getEmail().equals("null"));
         return checker;
-<<<<<<< HEAD
->>>>>>> release
-=======
->>>>>>> 96b21bfff1896935d6ca2d665a16a8334b4fd1a4
     }
 
 }
