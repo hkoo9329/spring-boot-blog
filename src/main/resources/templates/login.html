@@ -9,6 +9,7 @@
         .login-form-btn{
             width: 40%;
             margin: 1em 1em 1em 1em;
+            display: inline-block;
         }
     </style>
 </head>
@@ -17,14 +18,14 @@
 <div class="container" style="text-align: center; width: 400px;" id="login_form">
     <br/>
     <h2>로그인</h2><br/><br/>
-    <form name="f" th:action="@{/login}" method="post">
+    <form id="f" name="f" th:action="@{/login}" method="post">
         <input type="text" id="username" name="username" class="form-control" placeholder="아이디를 입력해 주세요"/>
         <input type="password" id="password" name="password" class="form-control" placeholder="비밀번호를 입력해 주세요"/>
-        <div class="form-actions">
-            <button class="btn-primary login-form-btn" type="submit" id="login_submit">로그인</button>
-            <button class="btn-primary login-form-btn" id="create_id">회원가입</button>
-        </div>
     </form>
+    <div class="form-actions">
+        <button class="btn-primary login-form-btn" type="submit" id="login_submit">로그인</button>
+        <button class="btn-primary login-form-btn" id="create_id">회원가입</button>
+    </div>
 
     <br>
     <!-- 추후 추가 예정 네이버 OAuth2 로그인
@@ -69,12 +70,29 @@
     var idChecker = false;
     var pwdChecker = false;
     var nameCheck = false;
-    //
+    //기본 로그인
+    $('#login_submit').click(function () {
+        var user_info =$('#f').serialize();
+        $.ajax({
+            cache:false,
+            type:'POST',
+            url:'/login',
+            data: user_info,
+            success:function () {
+                window.location.replace("/board/list");
+            },
+            error: function (request, status, error) {
+                console.error("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
+            }
+        });
+    });
+
+    //OAuth2 로그인
     $('.btn_social').click(function () {
         var socialType = $(this).data('social');
         window.location.replace("/oauth2/authorization/" + socialType);
     });
-
+    //로그인 화면을 숨기고 회원가입 화면을 나오게
     $('#create_id').click(function () {
         $('#login_form').hide();
         $('#create_form').show();
@@ -168,6 +186,7 @@
     });
 
 
+    // 이메일 형식 정규식 검사
     function checkEmail(email) {
         var exptext = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
         if (!exptext.test(email)) {
@@ -178,6 +197,7 @@
         }
     }
 
+    // 비밍번호 규칙 정규식 검사
     function checkpassword(password) {
         var regex = /^[A-Za-z0-9]{6,12}$/;
         if (!regex.test(password)) {
