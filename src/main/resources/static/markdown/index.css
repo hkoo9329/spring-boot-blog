@@ -3,8 +3,12 @@
 /*}*/
 
 #in {
-    float: left;
-    max-width: 30%;
+    margin-top: 10px;
+    margin-left: 10%;
+    display: inline-block;
+    width: 40%;
+    max-width: 40%;
+    resize: none;
 }
 
 /*.CodeMirror {*/
@@ -23,8 +27,11 @@
 /*}*/
 
 #out {
-    float: left;
-    max-width: 30%;
+    display: inline-block;
+    margin-top: 10px;
+    margin-left: 10%;
+    width: 40%;
+    max-width: 40%;
     vertical-align: top;
     background-color: white;
 }

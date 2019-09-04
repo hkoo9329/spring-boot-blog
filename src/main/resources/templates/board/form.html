@@ -88,21 +88,22 @@
         <input id="board_title" type="text" class="col-md-1 form-control input-sm" th:value="${board?.title}"/>
         <input id="board_sub_title" type="text" class="col-md-1 form-control input-sm" th:value="${board?.subTitle}"/>
         <div id="in">
-            <form><textarea id="code" class="col-md-1 form-control input-sm"># New Document</textarea></form>
+            <textarea style="display: inline-block;" id="code" class="col-md-1 form-control input-sm"># New Document</textarea>
         </div>
         <div id="out">
 
         </div>
     </div>
-
-
-    <div class="pull-left">
-        <a href="/board/list" class="btn btn-default">목록으로</a>
-    </div>
-    <div class="pull-right">
-        <button th:if="!${board?.idx}" type="button" class="btn btn-primary" id="insert">저장</button>
-        <button th:if="${board?.idx}" type="button" class="btn btn-info" id="update">수정</button>
-        <button th:if="${board?.idx}" type="button" class="btn btn-danger" id="delete">삭제</button>
+    <br/>
+    <div>
+        <div class="pull-left">
+            <a href="/board/list" class="btn btn-default">목록으로</a>
+        </div>
+        <div class="pull-right">
+            <button th:if="!${board?.idx}" type="button" class="btn btn-primary" id="insert">저장</button>
+            <button th:if="${board?.idx}" type="button" class="btn btn-info" id="update">수정</button>
+            <button th:if="${board?.idx}" type="button" class="btn btn-danger" id="delete">삭제</button>
+        </div>
     </div>
 </div>
 
