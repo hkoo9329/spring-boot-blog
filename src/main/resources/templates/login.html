@@ -78,7 +78,7 @@
             type:'POST',
             url:'/login',
             data: user_info,
-            success:function () {
+            success:function (data) {
                 window.location.replace("/board/list");
             },
             error: function (request, status, error) {
