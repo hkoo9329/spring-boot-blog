@@ -102,12 +102,22 @@
 <div>
     <div id="in">
                 <textarea style="display: inline-block;" id="code"
-                          class="col-md-1 form-control input-sm"># New Document</textarea>
+                          class="col-md-1 form-control input-sm" th:text="${board?.content}"># New Document</textarea>
     </div>
     <div id="out">
 
     </div>
+    <div>
+        <div id="saveas-markdown">
+
+        </div>
+        <div id="saveas-html">
+
+        </div>
+        <a id="close-menu">&times;</a>
+    </div>
 </div>
+<button id="test">test</button>
 
 
 
@@ -126,10 +136,21 @@
 <script src="/markdown/codemirror/htmlmixed/htmlmixed.js"></script>
 <script src="/markdown/codemirror/lib/util/continuelist.js"></script>
 <script src="/markdown/lib/spell-checker.min.js"></script>
-<script src="/markdown/lib/rawinflate.js"></script>
 <script src="/markdown/lib/rawdeflate.js"></script>
+<script src="/markdown/lib/rawinflate.js"></script>
 <script src="/markdown/lib/sweetalert.min.js"></script>
 <script src="/markdown/index.js"></script>
+
+<script>
+    $("#test").click(function () {
+        console.log($('.CodeMirror').val());
+        console.log($('#code').val());
+        clearEditor();
+    })
+    $(document).ready(function () {
+        alert($('#code').val());
+    })
+</script>
 
 <script th:if="!${board?.idx}">
 
@@ -165,8 +186,8 @@
         var jsonData = JSON.stringify({
             title: $('#board_title').val(),
             subTitle: $('#board_sub_title').val(),
-            content: $('#board_content').val(),
-            boardType: $('#board_type option:selected').val(),
+            content: $('#code').val(),
+            boardType: "free",
             createdDate: $('#board_create_date').val()
         });
         $.ajax({

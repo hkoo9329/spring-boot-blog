@@ -138,12 +138,12 @@ document.addEventListener('drop', function(e) {
 
 //Print the document named as the document title encoded to avoid strange chars and spaces
 function saveAsMarkdown() {
-    save(editor.getValue(), document.title.replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/\s]/gi, '') + ".md");
+    //save(editor.getValue(), document.title.replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/\s]/gi, '') + ".md");
 }
 
 //Print the document named as the document title encoded to avoid strange chars and spaces
 function saveAsHtml() {
-    save(document.getElementById('out').innerHTML, document.title.replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/\s]/gi, '') + ".html");
+    //save(document.getElementById('out').innerHTML, document.title.replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/\s]/gi, '') + ".html");
 }
 
 document.getElementById('saveas-markdown').addEventListener('click', function() {
@@ -188,26 +188,26 @@ function hideMenu() {
     menu.style.display = 'none';
 }
 
-function openFile(evt) {
-    if (window.File && window.FileReader && window.FileList && window.Blob) {
-        var files = evt.target.files;
-        console.log(files);
-        var reader = new FileReader();
-        reader.onload = function(file) {
-            console.log(file.target.result);
-            editor.setValue(file.target.result);
-            return true;
-        };
-        reader.readAsText(files[0]);
+// function openFile(evt) {
+//     if (window.File && window.FileReader && window.FileList && window.Blob) {
+//         var files = evt.target.files;
+//         console.log(files);
+//         var reader = new FileReader();
+//         reader.onload = function(file) {
+//             console.log(file.target.result);
+//             editor.setValue(file.target.result);
+//             return true;
+//         };
+//         reader.readAsText(files[0]);
+//
+//     } else {
+//         alert('The File APIs are not fully supported in this browser.');
+//     }
+// }
 
-    } else {
-        alert('The File APIs are not fully supported in this browser.');
-    }
-}
-
-document.getElementById('close-menu').addEventListener('click', function() {
-    hideMenu();
-});
+// document.getElementById('close-menu').addEventListener('click', function() {
+//     hideMenu();
+// });
 
 document.addEventListener('keydown', function(e) {
     if (e.keyCode == 83 && (e.ctrlKey || e.metaKey)) {
@@ -230,6 +230,7 @@ document.addEventListener('keydown', function(e) {
 });
 
 function clearEditor() {
+    console.log(editor.getValue());
     editor.setValue("");
 }
 
