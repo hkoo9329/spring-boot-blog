@@ -302,29 +302,8 @@ function processQueryParams() {
 }
 
 function start() {
-    processQueryParams();
-    if (window.location.hash) {
-        var h = window.location.hash.replace(/^#/, '');
-        if (h.slice(0, 5) == 'view:') {
-            setOutput(decodeURIComponent(escape(RawDeflate.inflate(atob(h.slice(5))))));
-            document.body.className = 'view';
-        } else {
-            editor.setValue(
-                decodeURIComponent(escape(
-                    RawDeflate.inflate(
-                        atob(
-                            h
-                        )
-                    )
-                ))
-            );
-        }
-    } else if (localStorage.getItem('content')) {
-        editor.setValue(localStorage.getItem('content'));
-    }
     update(editor);
     editor.focus();
-    //document.getElementById('fileInput').addEventListener('change', openFile, false);
 }
 
 window.addEventListener("beforeunload", function (e) {
