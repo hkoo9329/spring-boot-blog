@@ -15,17 +15,17 @@ emojify.setConfig({
 });
 
 var md = markdownit({
-        html: true,
-        highlight: function(code, lang) {
-            if (languageOverrides[lang]) lang = languageOverrides[lang];
-            if (lang && hljs.getLanguage(lang)) {
-                try {
-                    return hljs.highlight(lang, code).value;
-                } catch (e) {}
-            }
-            return '';
+    html: true,
+    highlight: function(code, lang) {
+        if (languageOverrides[lang]) lang = languageOverrides[lang];
+        if (lang && hljs.getLanguage(lang)) {
+            try {
+                return hljs.highlight(lang, code).value;
+            } catch (e) {}
         }
-    })
+        return '';
+    }
+})
     .use(markdownitFootnote);
 
 var hashto;
@@ -137,24 +137,24 @@ document.addEventListener('drop', function(e) {
 }, false);
 
 //Print the document named as the document title encoded to avoid strange chars and spaces
-function saveAsMarkdown() {
-    //save(editor.getValue(), document.title.replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/\s]/gi, '') + ".md");
-}
-
-//Print the document named as the document title encoded to avoid strange chars and spaces
-function saveAsHtml() {
-    //save(document.getElementById('out').innerHTML, document.title.replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/\s]/gi, '') + ".html");
-}
-
-document.getElementById('saveas-markdown').addEventListener('click', function() {
-    saveAsMarkdown();
-    hideMenu();
-});
-
-document.getElementById('saveas-html').addEventListener('click', function() {
-    saveAsHtml();
-    hideMenu();
-});
+// function saveAsMarkdown() {
+//     save(editor.getValue(), document.title.replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/\s]/gi, '') + ".md");
+// }
+//
+// //Print the document named as the document title encoded to avoid strange chars and spaces
+// function saveAsHtml() {
+//     save(document.getElementById('out').innerHTML, document.title.replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/\s]/gi, '') + ".html");
+// }
+//
+// document.getElementById('saveas-markdown').addEventListener('click', function() {
+//     saveAsMarkdown();
+//     hideMenu();
+// });
+//
+// document.getElementById('saveas-html').addEventListener('click', function() {
+//     saveAsHtml();
+//     hideMenu();
+// });
 
 function save(code, name) {
     var blob = new Blob([code], {
@@ -175,18 +175,18 @@ function save(code, name) {
     }
 }
 
-var menuVisible = false;
-var menu = document.getElementById('menu');
-
-function showMenu() {
-    menuVisible = true;
-    menu.style.display = 'block';
-}
-
-function hideMenu() {
-    menuVisible = false;
-    menu.style.display = 'none';
-}
+// var menuVisible = false;
+// var menu = document.getElementById('menu');
+//
+// function showMenu() {
+//     menuVisible = true;
+//     menu.style.display = 'block';
+// }
+//
+// function hideMenu() {
+//     menuVisible = false;
+//     menu.style.display = 'none';
+// }
 
 // function openFile(evt) {
 //     if (window.File && window.FileReader && window.FileList && window.Blob) {
@@ -204,7 +204,7 @@ function hideMenu() {
 //         alert('The File APIs are not fully supported in this browser.');
 //     }
 // }
-
+//
 // document.getElementById('close-menu').addEventListener('click', function() {
 //     hideMenu();
 // });
@@ -230,32 +230,31 @@ document.addEventListener('keydown', function(e) {
 });
 
 function clearEditor() {
-    console.log(editor.getValue());
     editor.setValue("");
 }
 
-function saveInBrowser() {
-    var text = editor.getValue();
-    if (localStorage.getItem('content')) {
-        swal({
-                title: "Existing Data Detected",
-                text: "You will overwrite the data previously saved!",
-                type: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#DD6B55",
-                confirmButtonText: "Yes, overwrite!",
-                closeOnConfirm: false
-            },
-            function() {
-                localStorage.setItem('content', text);
-                swal("Saved", "Your Document has been saved.", "success");
-            });
-    } else {
-        localStorage.setItem('content', text);
-        swal("Saved", "Your Document has been saved.", "success");
-    }
-    console.log("Saved");
-}
+// function saveInBrowser() {
+//     var text = editor.getValue();
+//     if (localStorage.getItem('content')) {
+//         swal({
+//                 title: "Existing Data Detected",
+//                 text: "You will overwrite the data previously saved!",
+//                 type: "warning",
+//                 showCancelButton: true,
+//                 confirmButtonColor: "#DD6B55",
+//                 confirmButtonText: "Yes, overwrite!",
+//                 closeOnConfirm: false
+//             },
+//             function() {
+//                 localStorage.setItem('content', text);
+//                 swal("Saved", "Your Document has been saved.", "success");
+//             });
+//     } else {
+//         localStorage.setItem('content', text);
+//         swal("Saved", "Your Document has been saved.", "success");
+//     }
+//     console.log("Saved");
+// }
 
 function toggleNightMode(button) {
     button.classList.toggle('selected');
@@ -325,12 +324,12 @@ function start() {
     }
     update(editor);
     editor.focus();
-    document.getElementById('fileInput').addEventListener('change', openFile, false);
+    //document.getElementById('fileInput').addEventListener('change', openFile, false);
 }
 
 window.addEventListener("beforeunload", function (e) {
     var confirmationMessage = 'It looks like you have been editing something. '
-                            + 'If you leave before saving, your changes will be lost.';
+        + 'If you leave before saving, your changes will be lost.';
     (e || window.event).returnValue = confirmationMessage; //Gecko + IE
     return confirmationMessage; //Gecko + Webkit, Safari, Chrome etc.
 });
