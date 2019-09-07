@@ -35,6 +35,7 @@
                th:value="${board?.createdDate} ? ${#temporals.format(board.createdDate,'yyyy-MM-dd HH:mm')} : ${board?.createdDate}"/>
         <input id="board_title" type="text" class="col-md-1 form-control input-sm" th:value="${board?.title}"/>
         <input id="board_sub_title" type="text" class="col-md-1 form-control input-sm" th:value="${board?.subTitle}"/>
+        <input type="file" id="files" name="files" multiple="multiple">
 
     </div>
 </div>
@@ -109,7 +110,6 @@
 </script>
 <script th:if="${board?.idx}">
     $('#update').click(function () {
-        alert(editor.getValue());
         var jsonData = JSON.stringify({
             title: $('#board_title').val(),
             subTitle: $('#board_sub_title').val(),

@@ -1,9 +1,13 @@
 package com.hkoo.toy.blog;
 
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
+@Slf4j
 public class moduleTest {
 
     @Test
@@ -13,6 +17,8 @@ public class moduleTest {
         s = s.replace(' ', '-');
         System.out.println(s);
     }
+
+
 
 
 }

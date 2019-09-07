@@ -2,6 +2,7 @@ package com.hkoo.toy.blog.controller.api;
 
 import com.hkoo.toy.blog.domain.Board;
 import com.hkoo.toy.blog.repository.BoardRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 
+@Slf4j
 @RepositoryRestController
 public class BoardRestController {
 
@@ -30,7 +32,7 @@ public class BoardRestController {
                 boardList.getNumber(), boardList.getTotalElements());
         PagedResources<Board> resources = new PagedResources<>(boardList.getContent(), pageMetadata);
         resources.add(linkTo(methodOn(BoardRestController.class).simpleBoard(pageable)).withSelfRel());
-
+        log.info(boardList.toString());
         return resources;
     }
 }
