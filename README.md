@@ -66,6 +66,9 @@
 - [x] DB를 기반으로 하는 로그인 기능 추가
 - [x] 비밀번호를 암호화 해서 저장하는 기능 추가
 
+
+### 사용한 Bootstrap 템플릿 출처 : https://startbootstrap.com/themes/sb-admin-2/
+
 ### 정리
  - [필요 코드들](./study/Codes.md)
  - [mysql 연동시 오류 해결 방법](./study/MySQLError.md)
