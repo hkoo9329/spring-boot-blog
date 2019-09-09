@@ -2,11 +2,10 @@
 <html lagn="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap-theme.min.css"/>
-
-
     <title>hkoo's homepage</title>
+    <link rel="stylesheet" type="text/css" href="css/all.min.css"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" >
+    <link rel="stylesheet" href="css/sb-admin-2.min.css"/>
     <style>
         body{
             height: 100vh;
@@ -15,15 +14,13 @@
     </style>
 </head>
 <body>
+<div th:replace="layout/sidebar::sidebar"></div>
 <div th:class="container" style="text-align: center">
-    <div th:each="num : ${#numbers.sequence(1,10)}">
-        <br/>
-    </div>
     <h1>이제 시작하는 홈페이지</h1>
     <a class="btn btn-secondary btn-lg" href="/board/list">시작하기</a>
 </div>
-
-
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/sb-admin-2.min.js"></script>
 </body>
 </html>

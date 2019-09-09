@@ -43,6 +43,7 @@ public class Board implements Serializable {
     @OneToOne(fetch = FetchType.LAZY)
     private User user;
 
+
     @Builder
     public Board(String title, String subTitle, String content, BoardType boardType,
                  LocalDateTime createdDate, LocalDateTime updatedDate, User user){

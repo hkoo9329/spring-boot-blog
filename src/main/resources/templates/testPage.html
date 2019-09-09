@@ -1,42 +1,130 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Markdown Editor</title>
-    <link rel="stylesheet" href="/markdown/lib/base16-light.css">
-    <link rel="stylesheet" href="/markdown/codemirror/lib/codemirror.css">
-    <link rel="stylesheet" href="/markdown/lib/default.css">
-    <link rel="stylesheet" href="/markdown/lib/github-markdown.css">
-    <link rel="stylesheet" href="/markdown/lib/sweetalert.css">
-    <link rel="stylesheet" href="/markdown/index.css">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Board Form</title>
+<!--    <link rel="stylesheet" th:href="@{/css/base.css}"/>-->
+<!--    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>-->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/all.min.css}"/>
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+          rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/sb-admin-2.min.css}"/>
 </head>
-<body>
+<div th:replace="layout/sidebar::sidebar"></div>
 
-<div>
-    <h2>test</h2>
-    <div id="in">
-        <form><textarea id="code"># New Document</textarea></form>
+<div class="container" id="main">
+    <div class="page-header">
+        <h1>게시글 목록</h1>
     </div>
-    <div id="out" class="markdown-body"></div>
+    <div>
+        <h3 style="text-align: right">
+
+            <span>님 안녕하세요!</span>
+        </h3>
+    </div>
+    <div class="pull-right" style="width:100px;margin:10px 0;">
+        <a href="/board" class="btn btn-primary btn-block">등록</a>
+    </div>
+    <br/><br/><br/>
+    <div class="container">
+        <div class="row">
+
+        </div>
+    </div>
+    <br/>
+    <!-- Pagination -->
+    <nav aria-label="Page navigation" style="text-align:center;">
+
+    </nav>
+    <!-- /Pagination -->
 </div>
 
+<br/>
+<br/>
 
-<script src="/markdown/lib/markdown-it.js"></script>
-<script src="/markdown/lib/markdown-it-footnote.js"></script>
-<script src="/markdown/lib/highlight.pack.js"></script>
-<script src="/markdown/lib/emojify.js"></script>
-<script src="/markdown/codemirror/lib/codemirror.js"></script>
-<script src="/markdown/codemirror/overlay.js"></script>
-<script src="/markdown/codemirror/xml/xml.js"></script>
-<script src="/markdown/codemirror/markdown/markdown.js"></script>
-<script src="/markdown/codemirror/gfm/gfm.js"></script>
-<script src="/markdown/codemirror/javascript/javascript.js"></script>
-<script src="/markdown/codemirror/css/css.js"></script>
-<script src="/markdown/codemirror/htmlmixed/htmlmixed.js"></script>
-<script src="/markdown/codemirror/lib/util/continuelist.js"></script>
-<script src="/markdown/lib/spell-checker.min.js"></script>
-<script src="/markdown/lib/rawinflate.js"></script>
-<script src="/markdown/lib/rawdeflate.js"></script>
-<script src="/markdown/lib/sweetalert.min.js"></script>
-<script src="/markdown/index.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script th:src="@{/js/jquery.min.js}"></script>
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+<script th:src="@{/js/sb-admin-2.min.js}"></script>
+
+<script>
+    var idChecker = false;
+
+    $(document).ready(function () {
+        $.ajax({
+            type: 'POST',
+            url: '/api/check/email',
+            success: function (data) {
+                if (data) {
+                    $("#main").hide();
+                    $("#getEmail").show();
+                }
+            },
+            error: function (request, status, error) {
+                console.error("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
+            }
+        });
+    });
+
+    $("#submit_email").click(function () {
+        if (!idChecker) {
+            alert("올바른 이메일을 입력해주세요");
+            return;
+        }
+        var id = $("#id_insert").val();
+        $.ajax({
+            type: 'POST',
+            url: '/api/create/email',
+            contentType: 'application/json',
+            data: id,
+            success: function () {
+                alert("이메일 입력이 완료되었습니다!");
+                $("#main").show();
+                $("#getEmail").hide();
+            },
+            error: function (request, status, error) {
+                console.error("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
+            }
+        });
+    });
+
+    // 아이디 유효성 검사
+    $("#id_insert").focusout(function () {
+        var id_text = $(this).val();
+        console.log(id_text);
+        var userData = {"id": id_text};
+        $.ajax({
+            type: "POST",
+            url: "/api/check/id",
+            data: {"id": id_text},
+            success: function (data) {
+                if (!data) {
+                    $('#id_make_error_message').text("이메일이 존재합니다.").css("color", "red");
+                    idChecker = false;
+                } else if (!checkEmail(id_text)) {
+                    $('#id_make_error_message').text("이메일이 형식이 올바르지 않습니다.").css("color", "red");
+                    idChecker = false;
+                } else {
+                    $('#id_make_error_message').text("사용가능한 이메일 입니다.").css("color", "blue");
+                    idChecker = true;
+                }
+            },
+            error: function (request, status, error) {
+                console.error("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
+            }
+        });
+    });
+
+
+    function checkEmail(email) {
+        var exptext = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
+        if (!exptext.test(email)) {
+            //이메일 형식이 알파벳+숫자@알파벳+숫자.알파벳+숫자 형식이 아닐경우
+            return false;
+        } else {
+            return true;
+        }
+    }
+</script>
 </body>
 </html>
