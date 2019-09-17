@@ -43,17 +43,20 @@ public class Board implements Serializable {
     @OneToOne(fetch = FetchType.LAZY)
     private User user;
 
+    @Column
+    private Long test;
 
     @Builder
     public Board(String title, String subTitle, String content, BoardType boardType,
-                 LocalDateTime createdDate, LocalDateTime updatedDate, User user){
+                 LocalDateTime createdDate, LocalDateTime updatedDate,Long test, User user){
         this.title = title;
         this.subTitle = subTitle;
         this.content = content;
         this.boardType = boardType;
         this.createdDate = createdDate;
         this.updatedDate = updatedDate;
-        this.user = user;
+//        this.user = user;
+        this.test = test;
     }
     public void setCreatedDateNow() {
         this.createdDate = LocalDateTime.now();

@@ -20,7 +20,7 @@
     <br/>
     <div>
         <div>
-            <p id="userInfo" th:object="${user}"></p>
+            <p id="user" th:text="${user.idx}"></p>
             <div class="pull-right">
                 <a href="/board/list" class="btn btn-default">목록으로</a>
             </div>
@@ -80,7 +80,6 @@
     });
 </script>
 <script th:if="!${board?.idx}">
-
     $('#insert').click(function () {
         console.log($('#code').val());
         var jsonData = JSON.stringify({
@@ -88,7 +87,7 @@
             subTitle: $('#board_sub_title').val(),
             content: editor.getValue(),
             boardType: "free",
-            user:$('#userInfo').get()
+            test:$('#user').val()
         });
         $.ajax({
             url: "/boards",
