@@ -2,9 +2,12 @@ package com.hkoo.toy.blog.controller;
 
 import com.hkoo.toy.blog.annotation.Socialuser;
 import com.hkoo.toy.blog.domain.User;
+import com.hkoo.toy.blog.repository.UserRepository;
 import com.hkoo.toy.blog.service.BoardService;
+import com.hkoo.toy.blog.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;

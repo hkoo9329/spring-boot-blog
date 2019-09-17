@@ -20,6 +20,7 @@
     <br/>
     <div>
         <div>
+            <p id="userInfo" th:object="${user}"></p>
             <div class="pull-right">
                 <a href="/board/list" class="btn btn-default">목록으로</a>
             </div>
@@ -86,7 +87,8 @@
             title: $('#board_title').val(),
             subTitle: $('#board_sub_title').val(),
             content: editor.getValue(),
-            boardType: "free"
+            boardType: "free",
+            user:$('#userInfo').get()
         });
         $.ajax({
             url: "/boards",
