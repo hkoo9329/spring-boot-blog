@@ -44,7 +44,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
         http
                 .authorizeRequests()
                 .antMatchers("/", "/oauth2/**", "/login/**", "/css/**", "/images/**", "/js/**", "/console/**").permitAll()
-                .antMatchers("/api/check/id","/api/create/user").permitAll()// api 접근은 모두 허용
+                .antMatchers("/api/**").permitAll()// api 접근은 모두 허용
                 //.antMatchers("/naver").hasAuthority(NAVER.getRoleType())
                 .antMatchers("/google").hasAuthority(GOOGLE.getRoleType())
                 .antMatchers("/kakao").hasAuthority(KAKAO.getRoleType())
