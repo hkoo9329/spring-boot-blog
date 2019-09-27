@@ -32,8 +32,6 @@ public class BoardRestController {
                 boardList.getNumber(), boardList.getTotalElements());
         PagedResources<Board> resources = new PagedResources<>(boardList.getContent(), pageMetadata);
         resources.add(linkTo(methodOn(BoardRestController.class).simpleBoard(pageable)).withSelfRel());
-        log.info(boardList.toString());
-        log.info("TEST");
         return resources;
     }
 }
