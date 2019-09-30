@@ -14,6 +14,7 @@
     </style>
 </head>
 <body>
+<span id="message" value="${message}">
 
 <div class="container" style="text-align: center; width: 400px;" id="login_form">
     <br/>
@@ -70,6 +71,17 @@
     var idChecker = false;
     var pwdChecker = false;
     var nameCheck = false;
+    var message = $('#message').val();
+    console
+    //로그인 실패 확인
+    $(document).ready(function () {
+        var message = $('#message').val();
+        console.log(message);
+        if (message == "fail"){
+            alert("로그인 실패 :"+message);
+        }
+    })
+    
     //기본 로그인
     $('#login_submit').click(function () {
         var user_info =$('#f').serialize();
